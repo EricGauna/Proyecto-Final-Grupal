@@ -1,11 +1,11 @@
 import axios from "axios";
 
 export const CreateNewProblema = async ({
-  file,
   title,
-  description,
-  barrio,
   ciudad,
+  barrio,
+  file,
+  description,
   userId,
 }) => {
   if (!file) {
@@ -14,9 +14,10 @@ export const CreateNewProblema = async ({
   try {
     const formData = new FormData();
     formData.append("title", title);
-    formData.append("description", description);
-    formData.append("barrio", barrio);
     formData.append("ciudad", ciudad);
+    formData.append("barrio", barrio);
+    formData.append("images", file)
+    formData.append("description", description);
     formData.append("userId", userId);
 
     const { data } = await axios.post(
@@ -27,7 +28,7 @@ export const CreateNewProblema = async ({
           "Content-Type": "multipart/form-data",
         },
       }
-    );
+    ); console.log(data);
     return data;
   } catch (e) {
     return {};
