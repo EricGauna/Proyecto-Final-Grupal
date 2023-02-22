@@ -1,4 +1,4 @@
-*,
+/* *,
 *:before,
 *:after {
   box-sizing: border-box;
@@ -358,4 +358,4 @@ body {
 .icon-link--twitter {
   left: auto;
   right: 5px;
-}
+} */

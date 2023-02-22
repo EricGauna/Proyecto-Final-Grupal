@@ -1,16 +1,62 @@
+* {
+  --deepblack: rgb(0, 0, 0);
+  --purplelov: #3e2992;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: black;
-
+  background-color: whitesmoke;
 }
 
+header {
+  background-color: var(--deepblack);
+}
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.LogInBox {
+  background-color: var(--purplelov);
+  width: 13rem;
+  height: 1rem;
+  padding: 1rem;
+  margin: 2rem;
+  border-radius: 22px;
+  transition: 0.33s;
+}
+
+.LogInBox:hover {
+  height: 11rem;
+}
+
+.LogInBox:hover .LogInForm {
+  opacity: 100%;
+}
+
+.LogInForm {
+  display: flex;
+  opacity: 0%;
+  transition: 0.13s;
+  flex-direction: column;
+}
+
+.form-control {
+  all: unset;
+  margin-bottom: 10%;
+  height: 2rem;
+  background-color: rgba(0, 0, 0, 0.781);
+  border-radius: 11px;
+  text-indent: 0.6rem;
+  font-size: 0.8rem;
+}
+
+input::selection {
+  background: #1e4273;
 }
