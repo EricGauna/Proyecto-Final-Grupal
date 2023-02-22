@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
+import { RegisterUser } from '../services/user';
+import "./register.css"
 
-export const RegisterForm= () => {
-    const [username, setUsername] = useState('');
+export const Registeruser = () => {
+    
+    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleUsernameChange = (event) => {
-        setUsername(event.target.value);
+    const handleNameChange = (event) => {
+        setName(event.target.value);
     };
 
     const handleEmailChange = (event) => {
@@ -17,15 +20,24 @@ export const RegisterForm= () => {
         setPassword(event.target.value);
     };
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
+    const handleSubmit = async (event) => {
+        event.preventDefault()
+        try {
+            const { data } = await RegisterUser ({ name, email, password });
+            console.log(data);
+        } catch (error) {
+            console.error(error);
+        };
     };
+    
+        
+    
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="formulario">
             <div>
-                <label htmlFor="username">Username</label>
-                <input type="text" id="username" value={username} onChange={handleUsernameChange} />
+                <label htmlFor="Name">Name</label>
+                <input type="text" id="username" value={name} onChange={handleNameChange} />
             </div>
             <div>
                 <label htmlFor="email">Email</label>

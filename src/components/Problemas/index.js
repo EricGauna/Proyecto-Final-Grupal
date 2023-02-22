@@ -1,17 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useQuery } from '../../hooks/useQuery';
 import { useNavigate } from 'react-router';
 import { getProblemas } from '../../services/Problemas';
-import { Buscador } from '../Buscador';
-import { createSearchParams } from "react-router-dom"
 import "./index.css"
 
 export const Problemas = () => {
     const [problemas, setProblemas] = useState([])
-    const query = useQuery();
-    const [filter, setFilter] = useState((query.get("search") || "").toLocaleLowerCase())
     const navigate = useNavigate()
-
     const [activeEl, setActiveEl] = useState(null);
 
     useEffect(() => {
@@ -45,30 +39,30 @@ export const Problemas = () => {
     useEffect(() => {
         getData()
     }, [])
-    const showDetail = ({ id }) => {
+    const showDetail = (id) => {
         console.info(id)
         navigate(`/problemas/${id}`)
     }
 
+  
 
-    const [isActive, setIsActive] = useState(false);
 
-    
+
 
     return (
+
+    
+    
         <div className="App container">
             <header>
-                <div className="d-flex flex-column flex-md-row align-items-center mb-4 border-bottom">
-                    <a href="/" className="d-flex align-items-center text-dark text-decoration-none">
-                        <span className="fs-4">Bienvenido a mi ciudad</span>
-                    </a>
-                </div>
+                
             </header>
-            <Buscador initialValue={filter} onSearch={({ value }) => navigate({ pathname: "/", search: createSearchParams({ search: value }).toString() })}></Buscador>
+
             <div className="cont s--inactive">
                 <div className="cont__inner">
                     {problemas.map((problema, index) => (
-                        <div className="el" onClick={handleElClick}>
+                        
+                        <div className="el" key={index} onClick={handleElClick}>
                             <div className="el__overflow">
                                 <div className="el__inner">
                                     <div className="el__bg"></div>
@@ -77,7 +71,9 @@ export const Problemas = () => {
                                     </div>
                                     <div className="el__content">
                                         <div className="el__text">{problema.description}</div>
+                                        <div className="el__text">{problema.id}</div>
                                         <div className="el__close-btn" onClick={handleCloseClick} />
+                                        <div className="el__go-detail" onClick={() => showDetail(problema.id)}/>
                                     </div>
                                 </div>
                             </div>
@@ -85,8 +81,8 @@ export const Problemas = () => {
                 </div>
             </div>
             </div>
+        
     );
 }
-
 
 

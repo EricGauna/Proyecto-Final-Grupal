@@ -5,13 +5,13 @@ export const UserProvider = ({ children }) => {
     const [user, setUser] = useState()
 
 
-    const loginUser = ({ username = "user", email, image = "fakephoto.com", token }) => {
+    const loginUser = ({ username = "user", email, password, image = "fakephoto.com", token }) => {
         /* if (nickname && token) {
             setUser({ nickname, token })
         } else {
             throw new Error("No me has pasado todo!")
         }*/
-        if (!email || !token) {
+        if (!email || !password) {
             throw new Error("No me has pasado todo!")
         }
         const newUser = { username, email, token, image }

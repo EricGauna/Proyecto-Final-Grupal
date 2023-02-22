@@ -21,7 +21,7 @@ export const CreateNewProblema = async ({
     formData.append("userId", userId);
 
     const { data } = await axios.post(
-      "http://localhost:8080/problema/post",
+      "http://localhost:8080/problemas/create",
       formData,
       {
         headers: {
