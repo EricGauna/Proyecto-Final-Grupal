@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { UserContext } from "../../contexto/UserContext";
 import { login } from "../../services/user";
+import "./index.css";
 
 export const Login = () => {
   const { loginUser } = useContext(UserContext);
