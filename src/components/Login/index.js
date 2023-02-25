@@ -26,15 +26,18 @@ export const Login = () => {
           className="form-control"
           placeholder="Correo electronico"
         />
-        <input
-          name="password"
-          type="password"
-          className="form-control"
-          placeholder="Contraseña"
-        />
+        <div className="Password_Container">
+          <input
+            name="password"
+            type="password"
+            className="form-control"
+            placeholder="Contraseña"
+          />
+          <i class="fa-solid fa-eye" id="showpass"></i>
+        </div>
         <button className="btn btn-primary">Login</button>
+        <a href="/registeruser">Registrase</a>
       </form>
-      <a href="/registeruser">Registrase</a>
     </div>
   );
 };

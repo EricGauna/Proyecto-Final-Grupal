@@ -6,7 +6,7 @@
   height: 1rem;
   padding: 1rem;
   margin: 2rem;
-  transition: ease-out 0.4s;
+  transition: ease-out 0.5s;
 }
 
 .LogInBox:hover {
@@ -41,4 +41,31 @@
 
 input::selection {
   background: #1e4273;
+}
+
+input[type="password"]::-ms-reveal {
+  display: none;
+}
+
+input[type="password"] {
+  padding-right: 2rem;
+  width: 76%;
+}
+
+.PasswordContainer {
+  width: 20rem;
+}
+
+.Password_Container {
+  position: relative;
+}
+
+#showpass {
+  position: absolute;
+  cursor: pointer;
+  opacity: 55%;
+  top: 19%;
+  left: 85%;
+  color: rgb(255, 255, 255);
+  width: 20rem;
 }
