@@ -4,11 +4,10 @@
 }
 
 html {
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%),
-    url(image.png);
+  background: url(image.png);
   background-repeat: no-repeat;
   background-position: top;
-  background-size: auto;
+  background-size: 100% auto;
   background-color: #000000;
 }
 

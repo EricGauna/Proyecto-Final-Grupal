@@ -1,9 +1,11 @@
+/* GENERAL LOG-IN */
+
 .LogInBox {
   background-color: var(--purplelov);
   opacity: 75%;
   border-radius: 22px 0px 0px 22px;
   width: 11rem;
-  height: 12rem;
+  height: 1rem;
   padding: 1rem;
   margin: 2rem;
   transition: ease-out 0.5s;
@@ -24,7 +26,7 @@
 
 .LogInForm {
   display: flex;
-  opacity: 100%;
+  opacity: 0%;
   transition: ease-in-out 0.33s;
   flex-direction: column;
 }
@@ -43,6 +45,8 @@ input::selection {
   background: #1e4273;
 }
 
+/* Password */
+
 input[type="password"]::-ms-reveal {
   display: none;
 }
@@ -50,7 +54,7 @@ input[type="password"]::-ms-reveal {
 input[type="text"],
 input[type="password"] {
   padding-right: 2rem;
-  width: 76%;
+  width: 78%;
 }
 
 .PasswordContainer {
@@ -70,7 +74,12 @@ input[type="password"] {
   position: absolute;
   cursor: pointer;
   opacity: 65%;
-  top: 19%;
+  top: 20%;
   left: 85%;
   color: rgb(255, 255, 255);
+  font-size: 0.95rem;
+}
+
+#showpass:hover {
+  opacity: 100%;
 }
