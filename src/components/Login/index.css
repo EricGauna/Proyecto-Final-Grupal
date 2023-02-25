@@ -3,7 +3,7 @@
   opacity: 75%;
   border-radius: 22px 0px 0px 22px;
   width: 11rem;
-  height: 1rem;
+  height: 12rem;
   padding: 1rem;
   margin: 2rem;
   transition: ease-out 0.5s;
@@ -24,7 +24,7 @@
 
 .LogInForm {
   display: flex;
-  opacity: 0%;
+  opacity: 100%;
   transition: ease-in-out 0.33s;
   flex-direction: column;
 }
@@ -47,6 +47,7 @@ input[type="password"]::-ms-reveal {
   display: none;
 }
 
+input[type="text"],
 input[type="password"] {
   padding-right: 2rem;
   width: 76%;
@@ -60,12 +61,16 @@ input[type="password"] {
   position: relative;
 }
 
+.Password_Container:hover #showpass {
+  display: block;
+}
+
 #showpass {
+  display: none;
   position: absolute;
   cursor: pointer;
-  opacity: 55%;
+  opacity: 65%;
   top: 19%;
   left: 85%;
   color: rgb(255, 255, 255);
-  width: 20rem;
 }

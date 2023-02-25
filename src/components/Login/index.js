@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { UserContext } from "../../contexto/UserContext";
 import { login } from "../../services/user";
 import "./index.css";
@@ -17,6 +17,15 @@ export const Login = () => {
       event.target.reset();
     }
   };
+
+  // Show Password Function
+
+  const [EyeState, SetEyeState] = useState(false);
+  const handleClick = () => {
+    SetEyeState((EyeState) => !EyeState);
+  };
+  let EyeStateCheck = EyeState ? "fa-solid fa-eye" : "fa-solid fa-eye-slash";
+
   return (
     <div className="LogInBox">
       <form onSubmit={loginNow} className="LogInForm">
@@ -29,11 +38,11 @@ export const Login = () => {
         <div className="Password_Container">
           <input
             name="password"
-            type="password"
+            type={EyeState ? "text" : "password"}
             className="form-control"
             placeholder="Contraseña"
           />
-          <i class="fa-solid fa-eye" id="showpass"></i>
+          <i className={EyeStateCheck} id="showpass" onClick={handleClick}></i>
         </div>
         <button className="btn btn-primary">Login</button>
         <a href="/registeruser">Registrase</a>
