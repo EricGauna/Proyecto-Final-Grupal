@@ -1,3 +1,85 @@
-.registro {
-    color: aliceblue;
+/* GENERAL LOG-IN */
+
+.LogInBox {
+  background-color: var(--purplelov);
+  opacity: 75%;
+  border-radius: 22px 0px 0px 22px;
+  width: 11rem;
+  height: 1rem;
+  padding: 1rem;
+  margin: 2rem;
+  transition: ease-out 0.5s;
+}
+
+.LogInBox:hover {
+  height: 12rem;
+  background: linear-gradient(
+    180deg,
+    rgba(62, 41, 146, 0.85) 0%,
+    rgba(62, 41, 146, 0) 100%
+  );
+}
+
+.LogInBox:hover .LogInForm {
+  opacity: 100%;
+}
+
+.LogInForm {
+  display: flex;
+  opacity: 0%;
+  transition: ease-in-out 0.33s;
+  flex-direction: column;
+}
+
+.form-control {
+  all: unset;
+  margin-bottom: 10%;
+  background-color: rgba(0, 0, 0, 0.781);
+  border-radius: 11px;
+  text-indent: 0.5rem;
+  font-size: 0.8rem;
+  padding: 0.6rem;
+}
+
+input::selection {
+  background: #1e4273;
+}
+
+/* Password */
+
+input[type="password"]::-ms-reveal {
+  display: none;
+}
+
+input[type="text"],
+input[type="password"] {
+  padding-right: 2rem;
+  width: 78%;
+}
+
+.PasswordContainer {
+  width: 20rem;
+}
+
+.Password_Container {
+  position: relative;
+}
+
+.Password_Container:hover #showpass {
+  display: block;
+}
+
+#showpass {
+  display: none;
+  position: absolute;
+  cursor: pointer;
+  opacity: 65%;
+  top: 20%;
+  left: 85%;
+  color: rgb(255, 255, 255);
+  font-size: 0.95rem;
+}
+
+#showpass:hover {
+  opacity: 100%;
 }
