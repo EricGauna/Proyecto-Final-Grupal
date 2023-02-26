@@ -1,7 +1,10 @@
 /* GENERAL LOG-IN */
 
 .LogInBoxClosed {
+  position: absolute;
   cursor: pointer;
+  top: 6rem;
+  left: 2.5rem;
   background-color: var(--purplelov);
   opacity: 75%;
   border-radius: 22px 0px 0px 22px;
@@ -13,8 +16,10 @@
 }
 
 .LogInBoxOpen {
+  position: absolute;
   cursor: pointer;
-  height: 12rem;
+  top: 6rem;
+  left: 2.5rem;
   background: linear-gradient(
     180deg,
     rgba(62, 41, 146, 0.85) 0%,
@@ -23,7 +28,7 @@
   opacity: 75%;
   border-radius: 22px 0px 0px 22px;
   width: 11rem;
-  height: 12rem;
+  height: 9rem;
   padding: 1rem;
   margin: 2rem;
   transition: ease-out 0.33s;

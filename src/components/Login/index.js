@@ -56,7 +56,6 @@ export const Login = () => {
         <button className="btn btn-primary">Login</button>
         <a href="/registeruser">Registrase</a>
       </form>
-      {/* <div className="Opener" ></div> */}
     </div>
   );
 };
