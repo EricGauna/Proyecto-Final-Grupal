@@ -28,7 +28,9 @@ export const login = async ({ email, password, }) => {
                 headers: { 'Content-Type': 'application/json' }
             })
 
+        console.log(data);
         return data
+        
     } catch (error) {
         console.error(error)
         throw new Error("No valid username")

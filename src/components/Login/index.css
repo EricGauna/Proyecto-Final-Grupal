@@ -1,6 +1,7 @@
 /* GENERAL LOG-IN */
 
-.LogInBox {
+.LogInBoxClosed {
+  cursor: pointer;
   background-color: var(--purplelov);
   opacity: 75%;
   border-radius: 22px 0px 0px 22px;
@@ -8,28 +9,55 @@
   height: 1rem;
   padding: 1rem;
   margin: 2rem;
-  transition: ease-out 0.5s;
+  transition: ease-out 0.33s;
 }
 
-.LogInBox:hover {
+.LogInBoxOpen {
+  cursor: pointer;
   height: 12rem;
   background: linear-gradient(
     180deg,
     rgba(62, 41, 146, 0.85) 0%,
     rgba(62, 41, 146, 0) 100%
   );
+  opacity: 75%;
+  border-radius: 22px 0px 0px 22px;
+  width: 11rem;
+  height: 12rem;
+  padding: 1rem;
+  margin: 2rem;
+  transition: ease-out 0.33s;
 }
 
-.LogInBox:hover .LogInForm {
-  opacity: 100%;
+.Opener{
+  width: 1rem;
+  height: 1rem;
+  background-color: aliceblue;
+}
+
+.LogInFormHidden {
+  display: none;
 }
 
 .LogInForm {
   display: flex;
-  opacity: 0%;
-  transition: ease-in-out 0.33s;
+  animation: fadeIn 0.65s;
   flex-direction: column;
 }
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0%;
+  }
+  10% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
+
 
 .form-control {
   all: unset;
@@ -45,6 +73,8 @@ input::selection {
   background: #1e4273;
 }
 
+
+
 /* Password */
 
 input[type="password"]::-ms-reveal {
@@ -55,6 +85,12 @@ input[type="text"],
 input[type="password"] {
   padding-right: 2rem;
   width: 78%;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+  cursor: text;
 }
 
 .PasswordContainer {

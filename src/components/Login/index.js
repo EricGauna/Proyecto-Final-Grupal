@@ -24,11 +24,20 @@ export const Login = () => {
   const handleClick = () => {
     SetEyeState((EyeState) => !EyeState);
   };
-  let EyeStateCheck = EyeState ? "fa-solid fa-eye" : "fa-solid fa-eye-slash";
+  let EyeStateCheck = EyeState ? "fa-solid fa-eye-slash" : "fa-solid fa-eye";
+
+    // Reveal Box Function //
+
+  const [BoxState, SetBoxState] = useState(false);
+  const handleClick2 = () => {
+    SetBoxState((BoxState) => !BoxState);
+  };
+  let BoxStateCheck = BoxState ? "LogInBoxOpen" : "LogInBoxClosed";
+  let BoxStateCheck2 = BoxState ? "LogInForm" : "LogInFormHidden";
 
   return (
-    <div className="LogInBox">
-      <form onSubmit={loginNow} className="LogInForm">
+    <div className={BoxStateCheck} onClick={handleClick2}>
+      <form onSubmit={loginNow} className={BoxStateCheck2} onClick={(e) => {e.stopPropagation()}}>
         <input
           name="email"
           type="email"
@@ -47,6 +56,7 @@ export const Login = () => {
         <button className="btn btn-primary">Login</button>
         <a href="/registeruser">Registrase</a>
       </form>
+      {/* <div className="Opener" ></div> */}
     </div>
   );
 };
