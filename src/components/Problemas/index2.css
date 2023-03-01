@@ -1,0 +1,15 @@
+.cont__inner {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  overflow: hidden;
+  padding: 5rem;
+  height: 100%;
+  text-align: center;
+}
+
+.el {
+  display: flex;
+  align-items: top;
+  margin: 2rem;
+}

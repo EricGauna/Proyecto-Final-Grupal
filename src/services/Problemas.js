@@ -1,8 +1,5 @@
 import axios from "axios";
 
-
-
-
 export const getProblemas = async () => {
   try {
     const { data } = await axios.get(
@@ -23,4 +20,15 @@ export const getProblemaById = async (id) => {
 } catch (e) {
   return {};
 }
+}
+
+export const getImages = async () => {
+  try {
+    const { data } = await axios.get(
+      `http://localhost:8080/images`
+    )
+    return (data)
+  } catch (e) {
+    return {}
+  }
 }

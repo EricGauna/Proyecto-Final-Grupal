@@ -1,42 +1,45 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Card } from "../components/Card";
-import { getProblemaById } from "../services/Problemas";
-import "./detalle.css"
+import { getProblemaById, getImages } from "../services/Problemas";
+import "./detalle.css";
 
 export const DetalleProblema = () => {
-    const { problemasId: id } = useParams();
-    const [problema, setProblema] = useState();
+    const { problemasid: id } = useParams();
+    const [problema, setProblema] = useState({});
+    const [imagenes, setImagenes] = useState([]);
     
     useEffect(() => {
         const loadData = async () => {
-            const { data } = await getProblemaById(id)
+            const { data } = await getProblemaById(id);
             console.log(data);
-            setProblema(data)
-        }
-        loadData()
-    }, [id])
+            setProblema(data);
 
-    return <div className="Detalle">
-        {!problema && <span>No hemos encontrado el problema seleccionado</span>}
-        {problema &&
-            <>
-                <h2>Detalles de {problema.title}</h2>
-                <Card
-                    className="problema"
-                    img={problema.images?.[0]}>
+            const imagesData = await getImages();
+            const filteredImages = imagesData.filter(image =>
+                data.images.find(img => img.images === image.filename)
+            );
+            setImagenes(filteredImages);
+        };
+        loadData();
+    }, [id]);
 
-                    <span className="Barrio">
-                    {problema.barrio}</span>
-                    <span className="Barrio">
-                        {problema.ciudad}
-                    </span>
-                <p>{problema.description}</p>
-                <p>{ problema.likes}</p>
-
-
-                </Card>
-            </>
-        }
-    </div>
+    return (
+        <div className="Detalle">
+            {!problema && <span>No hemos encontrado el problema seleccionado</span>}
+            {problema && (
+                <div>
+                    <h2>Detalles de {problema.title}</h2>
+                    <p>{problema.description}</p>
+                    <p>{problema.barrio}, {problema.ciudad}</p>
+                    <p>{problema.likes}</p>
+                    <div>
+                        <h3>Imágenes:</h3>
+                        {imagenes.map(image => (
+                            <img key={image.filename} src={`http://localhost:8080${image.url}`} alt={image.filename} />
+                        ))}
+                    </div>
+                </div>
+            )}
+        </div>
+    );
 }

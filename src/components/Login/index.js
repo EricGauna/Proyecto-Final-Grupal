@@ -1,17 +1,15 @@
-import { useContext, useState } from "react";
-import { UserContext } from "../../contexto/UserContext";
+import { useState } from "react";
 import { login } from "../../services/user";
 import "./index.css";
 
 export const Login = () => {
-  const { loginUser } = useContext(UserContext);
   const loginNow = async (event) => {
     try {
       event.preventDefault();
       const email = event.target.email.value;
       const password = event.target.password.value;
       const loggedUser = await login({ email, password });
-      loginUser(loggedUser);
+      return loggedUser
     } catch (e) {
       alert(e);
       event.target.reset();

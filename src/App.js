@@ -3,8 +3,10 @@ import { CreateProblema } from './views/CreateProblema';
 import { ErrorPage } from './views/ErrorPage';
 import { Main } from './views/Main';
 import { DetalleProblema } from "./views/DetalleProblema";
-import {  Registeruser } from "./views/RegisterUser";
+import { Registeruser } from "./views/RegisterUser";
 import { Cabecera } from "./components/Cabecera";
+import { ImageGallery } from "./views/Images";
+import { Buscador } from "./components/Buscador";
 
 
 
@@ -24,9 +26,18 @@ export const App = () => {
       element: <CreateProblema />,
     },
     {
-      path: "/problemas/:problemasId",
+      path: "/search",
+      element: <Buscador />
+    },
+    {
+      path: "/problemas/:problemasid",
       element: <DetalleProblema />,
-    }
+    },
+    {
+      path: "/images",
+      element: <ImageGallery />,
+    },
+
 
   ])
   return (

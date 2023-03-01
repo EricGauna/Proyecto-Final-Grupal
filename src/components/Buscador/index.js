@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 
 export const Buscador = ({ defaultValue, onSearch }) => {
   return (
@@ -6,8 +5,8 @@ export const Buscador = ({ defaultValue, onSearch }) => {
       onSubmit={(e) => {
         e.preventDefault();
         onSearch?.({ value: e.target.searcher[0].value });
-        // e.target.searcher[0].value = ""
-        // e.target.reset()
+         //e.target.searcher[0].value = ""
+         //e.target.reset()
       }}
     >
       <div className="input-group mb-3">
@@ -26,7 +25,4 @@ export const Buscador = ({ defaultValue, onSearch }) => {
   );
 };
 
-Buscador.propTypes = {
-  defaultValue: PropTypes.string.isRequired,
-  onSearch: PropTypes.func.isRequired,
-};
+
