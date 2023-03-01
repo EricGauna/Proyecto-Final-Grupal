@@ -11,6 +11,9 @@ export const UserProvider = ({ children }) => {
         } else {
             throw new Error("No me has pasado todo!")
         }*/
+
+        console.log(email,username, password);
+        
         if (!email || !password) {
             throw new Error("No me has pasado todo!")
         }

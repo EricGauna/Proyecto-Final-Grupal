@@ -1,8 +1,13 @@
-a {
-  all: unset;
-  color: white;
+h1 {
   display: flex;
   justify-content: center;
+}
+
+
+a {
+  width: 5rem;
+  all: unset;
+  color: white;
   cursor: pointer;
   transition: 0.33s;
 }

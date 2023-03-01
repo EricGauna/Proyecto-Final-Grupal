@@ -53,6 +53,10 @@ export const Problemas = () => {
           {problemas.map((problema, index) => (
             <div className="el" key={index} onClick={handleElClick}>
               <div className="el__overflow">
+                <div
+                  className="el__go-detail"
+                  onClick={() => showDetail(problema.id)}
+                />
                 <div className="el__inner">
                   <div className="el__bg"></div>
                   <div className="el__preview-cont">
@@ -62,10 +66,6 @@ export const Problemas = () => {
                     <div className="el__text">{problema.description}</div>
                     <div className="el__text">{problema.id}</div>
                     <div className="el__close-btn" onClick={handleCloseClick} />
-                    <div
-                      className="el__go-detail"
-                      onClick={() => showDetail(problema.id)}
-                    />
                   </div>
                 </div>
               </div>
