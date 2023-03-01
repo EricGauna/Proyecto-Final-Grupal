@@ -3,6 +3,7 @@ import { login } from "../../services/user";
 import { UserContext } from "../../contexto/UserContext";
 
 import "./index.css"
+import { Buscador } from "../Buscador";
 
 export const Login = () => {
   const { loginUser, loggedUser,logOut } = useContext(UserContext);
@@ -64,7 +65,8 @@ export const Login = () => {
                 <h1><a href="/user" className="Inicio">Bienvenid@, {loggedUser() ? loggedUser().name : "Usuario"}!</a></h1>
                 <button onClick={logOut}>Log Out</button>
               </div>
-          ) : (
+            ) : (
+                <div>
             <form onSubmit={loginNow} className="LogInForm">
               <input
                 name="email"
@@ -83,7 +85,9 @@ export const Login = () => {
               </div>
               <button className="boton">Login</button>
               <a className="registro" href="/registeruser">Registrase</a>
-            </form>
+                </form>
+                  <Buscador className="buscador"></Buscador>
+                </div>
           )}
         </>
       )}

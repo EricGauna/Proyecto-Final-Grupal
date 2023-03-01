@@ -12,7 +12,7 @@
 }
 
 .LogInBox:hover {
-  height: 14rem;
+  height: 17rem;
   background: linear-gradient(
     180deg,
     rgba(62, 41, 146, 0.85) 0%,
@@ -76,7 +76,7 @@ input[type="password"] {
   opacity: 65%;
   top: 20%;
   left: 85%;
-  color: rgb(255, 255, 255);
+  color: rgb(14, 11, 11);
   font-size: 0.95rem;
 }
 
@@ -106,5 +106,10 @@ input[type="password"] {
   border-radius: 25px;
   margin-bottom: 1rem;
   cursor: pointer;
+  
+}
+
+.buscador{
+
   
 }

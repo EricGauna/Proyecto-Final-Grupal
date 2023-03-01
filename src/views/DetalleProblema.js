@@ -37,6 +37,8 @@ export const DetalleProblema = () => {
                         {imagenes.map(image => (
                             <img key={image.filename} src={`http://localhost:8080${image.url}`} alt={image.filename} />
                         ))}
+                        
+                        <button></button>
                     </div>
                 </div>
             )}
