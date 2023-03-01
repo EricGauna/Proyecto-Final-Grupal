@@ -7,6 +7,7 @@ import { Registeruser } from "./views/RegisterUser";
 import { Cabecera } from "./components/Cabecera";
 import { ImageGallery } from "./views/Images";
 import { Buscador } from "./components/Buscador";
+import { User } from "./views/User";
 
 
 
@@ -37,16 +38,16 @@ export const App = () => {
       path: "/images",
       element: <ImageGallery />,
     },
-
-
+    {
+      path: "/user",
+      element: <User/>,
+    },
   ])
   return (
   <div>
   <div>
       <Cabecera></Cabecera>
       </div>
-      
-
     <div>
       <RouterProvider router={router} />
       </div>

@@ -20,25 +20,24 @@ export const Registeruser = () => {
         setPassword(event.target.value);
     };
 
-    const handleSubmit = async (event) => {
-        event.preventDefault()
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
         try {
-            const { data } = await RegisterUser ({ name, email, password });
+            const data = await RegisterUser({ name, email, password });
             console.log(data);
         } catch (error) {
-            console.error(error);
-        };
+            if (error.response && error.response.status === 400) {
+                alert("Wrong email or password");
+            } else {
+                console.error(error);
+            }
+        }
     };
-    
-        
-    
 
     return (
+        <div className="form-container">
         <form onSubmit={handleSubmit} className="formulario">
-            <div>
-                <label htmlFor="Name">Name</label>
-                <input type="text" id="username" value={name} onChange={handleNameChange} />
-            </div>
             <div>
                 <label htmlFor="email">Email</label>
                 <input type="email" id="email" value={email} onChange={handleEmailChange} />
@@ -47,8 +46,13 @@ export const Registeruser = () => {
                 <label htmlFor="password">Password</label>
                 <input type="password" id="password" value={password} onChange={handlePasswordChange} />
             </div>
-            <button type="submit">Register</button>
+            <div>
+                <label htmlFor="Name">Name</label>
+                <input type="text" id="name" value={name} onChange={handleNameChange} />
+            </div>
+            <button className="registro" type="submit">Registrarse</button>
         </form>
+        </div>
     );
 }
 

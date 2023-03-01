@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-.cont__inner {
-  margin-top: 15rem;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-=======
 
 *,
 *:before,
@@ -19,7 +12,6 @@ body {
 }
 .cont {
   position: relative;
->>>>>>> 8d3e612 (Ultima Actualizacion)
   overflow: hidden;
   height: 85vh;
   padding: 80px 70px;
@@ -82,24 +74,6 @@ body {
 .cont.s--inactive .el__bg:before {
   transform: translate3d(0, -100%, 0) scale(1.2);
 }
-<<<<<<< HEAD
-
-.el__go-detail {
-  display: block;
-  width: 10px;
-  height: 10px;
-  border-radius: 100px;
-  background-color: aliceblue;
-  transition: all 0s 0.45s;
-  cursor: pointer;
-}
-
-.el__overflow {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-=======
 .el.s--active .el__bg:before {
   transition: transform 0.8s;
 }
@@ -141,7 +115,8 @@ body {
   transition: all 0.5s;
 }
 .el__heading {
-  color: #fff;
+  color: #f5f1f1;
+  text-shadow: black 0.1em 0.1em 0.2em;
   text-transform: uppercase;
   font-size: 18px;
 }
@@ -167,6 +142,7 @@ body {
   text-transform: uppercase;
   font-size: 40px;
   color: #fff;
+  text-shadow: black 0.1em 0.1em 0.2em;
 }
 .el__close-btn {
   z-index: -1;
@@ -181,23 +157,28 @@ body {
   cursor: pointer;
 }
 .el__go-detail {
-  z-index: -1;
-  position: absolute;
-  right: 10px;
-  bottom: 10px;
-  width: 60px;
-  height: 60px;
-  opacity: 0;
-  pointer-events: none;
-  transition: all 0s 0.45s;
-  cursor: pointer;
+ z-index: -1;
+ 
+        position: absolute;
+        right: 35px;
+        bottom: 20px;
+        width: 60px;
+        height: 60px;
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0s 0.45s;
+        cursor: pointer;
 }
+
+
 .el.s--active .el__go-detail {
-  z-index: 5;
-  opacity: 1;
-  pointer-events: auto;
-  transition: all 0s 1.4s;
+   z-index: 5;
+  
+        opacity: 1;
+        pointer-events: auto;
+        transition: all 0s 1.4s;
 }
+
 .el.s--active .el__close-btn {
   z-index: 5;
   opacity: 1;
@@ -206,21 +187,21 @@ body {
 }
 .el__go-detail:before,
 .el__go-detail:after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 50%;
-  width: 100%;
-  height: 8px;
-  margin-top: -4px;
-  background: #fff;
-  opacity: 0;
-  transition: opacity 0s;
+  content: '';
+        position: absolute;
+        margin-top: -4px;
+        background: #fff;
+        text-shadow: black 0.1em 0.1em 0.2em;
+        opacity: 0;
+        transition: opacity 0s;
 }
 .el.s--active .el__go-detail:before,
 .el.s--active .el__go-detail:after {
   opacity: 1;
+ 
 }
+
+
 .el__close-btn:before,
 .el__close-btn:after {
   content: "";
@@ -231,9 +212,11 @@ body {
   height: 8px;
   margin-top: -4px;
   background: #fff;
+  text-shadow: black 0.1em 0.1em 0.2em;
   opacity: 0;
   transition: opacity 0s;
 }
+
 .el.s--active .el__close-btn:before,
 .el.s--active .el__close-btn:after {
   opacity: 1;
@@ -254,6 +237,7 @@ body {
     cubic-bezier(0.72, 0.09, 0.32, 1.57);
   transform: rotate(-45deg) translateX(0);
 }
+
 
 .el:hover .el__bg:before {
   transform: translate3d(0, 0, 0) scale(1.1);
@@ -392,4 +376,7 @@ body {
   left: auto;
   right: 5px;
 } 
->>>>>>> 8d3e612 (Ultima Actualizacion)
+
+/* pruebas */
+
+

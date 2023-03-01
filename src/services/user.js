@@ -1,22 +1,24 @@
 import axios from "axios";
-// kminchelle, 0lelplR
 export const RegisterUser = async ({ name, email, password }) => {
     try {
-        const { data } = await axios.post('http://localhost:8080/registeruser', {
-            name,
-            email,
-            password,
-        },
+        const { data } = await axios.post(
+            "http://localhost:8080/registeruser",
             {
-                headers: { 'Content-Type': 'application/json' }
-            })
+                name,
+                email,
+                password,
+            },
+            {
+                headers: { "Content-Type": "application/json" },
+            }
+        );
 
-        return data
+        return data;
     } catch (error) {
-        console.error(error)
-        throw new Error("No valid username")
+        console.error(error);
+        throw new Error("");
     }
-}
+};
 
 export const login = async ({ email, password, }) => {
     try {
@@ -33,6 +35,6 @@ export const login = async ({ email, password, }) => {
         
     } catch (error) {
         console.error(error)
-        throw new Error("No valid username")
+        throw new Error("Wrong email o password")
     }
 }

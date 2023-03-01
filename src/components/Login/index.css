@@ -1,68 +1,35 @@
 /* GENERAL LOG-IN */
 
-.LogInBoxClosed {
-  position: absolute;
-  cursor: pointer;
-  top: 6rem;
-  left: 2.5rem;
+.LogInBox {
   background-color: var(--purplelov);
   opacity: 75%;
   border-radius: 22px 0px 0px 22px;
-  width: 11rem;
+  width: 13rem;
   height: 1rem;
   padding: 1rem;
   margin: 2rem;
-  transition: ease-out 0.33s;
+  transition: ease-out 0.5s;
 }
 
-.LogInBoxOpen {
-  position: absolute;
-  cursor: pointer;
-  top: 6rem;
-  left: 2.5rem;
+.LogInBox:hover {
+  height: 14rem;
   background: linear-gradient(
     180deg,
     rgba(62, 41, 146, 0.85) 0%,
     rgba(62, 41, 146, 0) 100%
   );
-  opacity: 75%;
-  border-radius: 22px 0px 0px 22px;
-  width: 11rem;
-  height: 9rem;
-  padding: 1rem;
-  margin: 2rem;
-  transition: ease-out 0.33s;
 }
 
-.Opener{
-  width: 1rem;
-  height: 1rem;
-  background-color: aliceblue;
-}
-
-.LogInFormHidden {
-  display: none;
+.LogInBox:hover .LogInForm {
+  opacity: 100%;
 }
 
 .LogInForm {
   display: flex;
-  animation: fadeIn 0.65s;
+  opacity: 0%;
+  transition: ease-in-out 0.33s;
   flex-direction: column;
 }
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0%;
-  }
-  10% {
-    opacity: 0%;
-  }
-  100% {
-    opacity: 100%;
-  }
-}
-
-
 
 .form-control {
   all: unset;
@@ -78,8 +45,6 @@ input::selection {
   background: #1e4273;
 }
 
-
-
 /* Password */
 
 input[type="password"]::-ms-reveal {
@@ -89,13 +54,7 @@ input[type="password"]::-ms-reveal {
 input[type="text"],
 input[type="password"] {
   padding-right: 2rem;
-  width: 78%;
-}
-
-input[type="text"],
-input[type="password"],
-input[type="email"] {
-  cursor: text;
+  width: 76%;
 }
 
 .PasswordContainer {
@@ -123,4 +82,29 @@ input[type="email"] {
 
 #showpass:hover {
   opacity: 100%;
+}
+
+.LogInBoxLoggedIn {
+  position: absolute;
+  background-color: var(--purplelov);
+  opacity: 75%;
+  border-radius: 22px 0px 0px 22px;
+  padding: 1rem;
+  margin: 2rem;
+  transition: ease-out 0.5s;
+  display: inline-block;
+}
+
+.registro{
+  display: flex;
+  align-self: center;
+  cursor: pointer;
+}
+
+.boton{
+  padding: 0.4rem;
+  border-radius: 25px;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  
 }

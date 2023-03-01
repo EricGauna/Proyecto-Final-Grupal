@@ -102,7 +102,8 @@ export const Problemas = () => {
                 <div
                   className="el__go-detail"
                   onClick={() => showDetail(problema.id)}
-                />
+                >Ir al Detalle
+                </div>
                 <div className="el__inner">
                   <div className="el__bg"></div>
                   <div className="el__preview-cont">
