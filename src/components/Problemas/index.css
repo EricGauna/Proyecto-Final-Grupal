@@ -374,3 +374,10 @@ body {
 }
 
 
+input {
+  border: none;
+  border-radius: 20px;
+  padding: 10px;
+  margin-right: 10px;
+  background-color: white;
+}
