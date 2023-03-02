@@ -45,3 +45,17 @@ export const getImages = async () => {
     return {}
   }
 }
+
+
+
+export const searchProblemas = async (searchParams) => {
+  try {
+    const { data } = await axios.get(
+      `http://localhost:8080/search?${searchParams}`
+    );
+    return data;
+  } catch (e) {
+    return {};
+  }
+};
+

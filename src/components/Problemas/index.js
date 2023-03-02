@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import { getProblemas } from "../../services/Problemas";
+import { getProblemas, searchProblemas } from "../../services/Problemas";
+import { Buscador } from "../Buscador";
+import { createSearchParams } from "react-router-dom";
+import { useQuery } from "../../hooks/useQuery";
+
 import "./index.css";
 
 export const Problemas = () => {
   const [problemas, setProblemas] = useState([]);
   const [imagenProblema, setImagenProblema] = useState("");
+  const query = useQuery();
+  
+  const [filter, setFilter] = useState((query.get("search") || "").toLocaleLowerCase());
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -14,12 +21,19 @@ export const Problemas = () => {
   }, []);
 
   useEffect(() => {
+    const getData = async () => {
+      const { data } = await searchProblemas(filter);
+      console.log(data);
+      setProblemas(data.slice(0, 5));
+    };
+    getData();
+  }, [filter]);
+
+  useEffect(() => {
     const getImagenes = async () => {
       const promises = problemas.map(async (problema) => {
         if (problema.images && problema.images.length > 0) {
-          const response = await fetch(
-            `http://localhost:8080/images/${problema.images[0].images}`
-          );
+          const response = await fetch(`http://localhost:8080/images/${problema.images[0].images}`);
           const blob = await response.blob();
           const url = URL.createObjectURL(blob);
           return url;
@@ -36,13 +50,10 @@ export const Problemas = () => {
     const elBgs = document.querySelectorAll(".el__bg");
     elBgs.forEach((elBg, index) => {
       if (imagenProblema[index]) {
-        elBg.style.setProperty(
-          "--imagen-problema",
-          `url('${imagenProblema[index]}')`
-        );
+        elBg.style.setProperty("--imagen-problema", `url('${imagenProblema[index]}')`);
       }
     });
-  }, [imagenProblema]);
+  }, [imagenProblema,problemas]);
 
   const handleElClick = (event) => {
     const target = event.currentTarget;
@@ -64,20 +75,44 @@ export const Problemas = () => {
 
   const getData = async () => {
     const { data } = await getProblemas();
-    setProblemas(data.slice(0, 5)); 
+    console.log(data.slice(0, 5));
+    setProblemas(data.slice(0, 5));
   };
   
   useEffect(() => {
     getData();
   }, []);
 
+  const handleSearch = ({ value, option }) => {
+    const searchParams = createSearchParams({
+      [option]: value,
+    }).toString();
+    navigate({ pathname: "/search", search: searchParams });
+    setFilter(searchParams);
+    console.log(searchParams);
+  };
+
   const showDetail = (id) => {
     console.info(id);
     navigate(`/problemas/${id}`);
   };
+
   return (
     <div className="Appcontainer">
-      <header></header>
+      <header>
+        <Buscador
+          className="buscador"
+          initialValue={filter}
+          onSearch={handleSearch}
+          options={[
+            { value: "Ciudad", key: "ciudad" },
+            { value: "Barrio", key: "barrio" },
+            { value: "Estado", key: "estado" },
+            { value: "Título", key: "title" },
+          ]}
+        />
+      </header>
+
 
       <div className="cont s--inactive">
         <div className="cont__inner">

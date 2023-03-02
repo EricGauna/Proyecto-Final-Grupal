@@ -1,28 +1,52 @@
+import React, { useState } from "react";
+import "./index.css"
 
-export const Buscador = ({ defaultValue, onSearch }) => {
+export const Buscador = ({ defaultValue, onSearch, options, option1, option2, option3 }) => {
+  const [searchValues, setSearchValues] = useState({
+    option: options[0].key,
+    value: defaultValue || "",
+    option1: "",
+    option2: "",
+    option3: "",
+  });
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setSearchValues((prevState) => ({ ...prevState, [name]: value }));
+  };
+
+  const handleSearch = (event) => {
+    event.preventDefault();
+    onSearch?.(searchValues);
+  };
+
   return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        onSearch?.({ value: e.target.searcher[0].value });
-         //e.target.searcher[0].value = ""
-         //e.target.reset()
-      }}
-    >
-      <div className="input-group mb-3">
+    <form onSubmit={handleSearch}>
+      <div className="input">
         <input
-          defaultValue={defaultValue}
-          name="searcher"
+          name="value"
           type="text"
           className="form-control"
-          placeholder="Busca aquí el problema que quieres"
+          placeholder="Buscar problema"
+          value={searchValues.value}
+          onChange={handleInputChange}
         />
-        <button className="searcher" id="searcher">
+        <select
+          name="option"
+          className="form-select"
+          value={searchValues.option}
+          onChange={handleInputChange}
+        >
+          {options.map((opt) => (
+            <option key={opt.key} value={opt.key}>
+              {opt.value}
+            </option>
+          ))}
+        </select>
+        <button type="submit" className="btn btn-primary">
           Buscar
         </button>
       </div>
     </form>
   );
 };
-
-

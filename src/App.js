@@ -6,7 +6,6 @@ import { DetalleProblema } from "./views/DetalleProblema";
 import { Registeruser } from "./views/RegisterUser";
 import { Cabecera } from "./components/Cabecera";
 import { ImageGallery } from "./views/Images";
-import { Buscador } from "./components/Buscador";
 import { User } from "./views/User";
 
 
@@ -15,6 +14,11 @@ export const App = () => {
   const router = createBrowserRouter([
     {
       path: "/",
+      element: <Main />,
+      errorElement: <ErrorPage />,
+    },
+    {
+      path: "/search",
       element: <Main />,
       errorElement: <ErrorPage />,
     },
