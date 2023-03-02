@@ -50,16 +50,6 @@ export const Problemas = () => {
     const cont = document.querySelector(".cont");
     cont.classList.add("s--el-active");
     target.classList.add("s--active");
-
-    // const images = problemas[target.dataset.id].images;
-    // if (images && images.length > 0) {
-    //   console.log("Image Update")
-    //   setImagenProblema([
-    //     `http://localhost:8080/images/${images[0].images}`,
-    //   ]);
-    // } else {
-    //   setImagenProblema([""]);
-    // }
   };
 
   const handleCloseClick = (event) => {
@@ -74,8 +64,7 @@ export const Problemas = () => {
 
   const getData = async () => {
     const { data } = await getProblemas();
-    console.log(data);
-    setProblemas(data);
+    setProblemas(data.slice(0, 5)); 
   };
 
   useEffect(() => {
