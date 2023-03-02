@@ -8,9 +8,9 @@ export const UserProvider = ({ children }) => {
         setUser(JSON.parse(localStorage.getItem("user") || "{}"));
     }, [])
 
-    const loginUser = ({ name = "user", email, token, role }) => {
+    const loginUser = ({ name = "user", email, token, role, id }) => {
 
-        const newUser = { name, email, token, role }
+        const newUser = { name, email, token, role, id }
         setUser(newUser)
         localStorage.setItem("user", JSON.stringify(newUser));
         console.log(newUser);

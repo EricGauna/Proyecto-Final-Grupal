@@ -16,6 +16,7 @@ export const Login = () => {
       const password = event.target.password.value
       const { data } = await login({ email, password })
       loginUser(data);
+      console.log(data);
       setIsLoggedIn(true);
       window.location.reload(false);
     } catch (e) {
@@ -76,12 +77,6 @@ export const Login = () => {
     }
   }, [loggedUser]);
 
-  useEffect(() => {
-    const user = loggedUser();
-    if (user) {
-      setIsLoggedIn(true);
-    }
-  }, [loggedUser]);
   
 
   return (
@@ -101,7 +96,7 @@ export const Login = () => {
                 <button className="LogOut" onClick={() => {
                 logOut();
                 handleClick4();
-                }}>Log Out</button>
+        }}>Log Out</button>
                 </div>
               </div>
           ) : (

@@ -1,68 +1,112 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { createProblemas } from "../services/Problemas";
+import "./CreateProblema.css";
+import { UserContext } from "../contexto/UserContext";
 
 export const CreateProblema = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [barrio, setBarrio] = useState("");
   const [ciudad, setCiudad] = useState("");
-  const [file, setFile] = useState(null);
+  const [files, setFiles] = useState([]);
+  const [fileNames, setFileNames] = useState([]);
+  const { loggedUser } = useContext(UserContext);
 
   const handleFileChange = (event) => {
-    setFile(event.target.files[0]);
+    const selectedFiles = event.target.files;
+    const fileArray = Array.from(selectedFiles);
+    setFiles(fileArray);
+    setFileNames(fileArray.map((file) =>
+      URL.createObjectURL(file)))
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
+    const token = loggedUser()?.token;
     event.preventDefault();
     const formData = new FormData();
     formData.append("title", title);
     formData.append("description", description);
     formData.append("barrio", barrio);
     formData.append("ciudad", ciudad);
-    formData.append("file", file);
-    // Aquí podrías enviar el formData al servidor para crear el "problema"
+    for (let i = 0; i < files.length; i++) {
+      formData.append("images", files[i]);
+    }
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "multipart/form-data",
+      },
+    };
+    try {
+      const response = await createProblemas(formData, config);
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="title">Título:</label>
-      <input
-        type="text"
-        id="title"
-        value={title}
-        onChange={(event) => setTitle(event.target.value)}
-      />
+    <div className="form-container">
+      <form className="formulario" onSubmit={handleSubmit}>
+        <div>
+          <label htmlFor="title">Título:</label>
+          <input
+            type="text"
+            id="title"
+            value={title}
+            onChange={(event) => setTitle(event.target.value)}
+          />
+        </div>
 
-      <label htmlFor="description">Descripción:</label>
-      <textarea
-        id="description"
-        value={description}
-        onChange={(event) => setDescription(event.target.value)}
-      />
+        <div>
+          <label htmlFor="description">Descripción:</label>
+          <textarea
+            id="description"
+            value={description}
+            onChange={(event) => setDescription(event.target.value)}
+          />
+        </div>
 
-      <label htmlFor="barrio">Barrio:</label>
-      <input
-        type="text"
-        id="barrio"
-        value={barrio}
-        onChange={(event) => setBarrio(event.target.value)}
-      />
+        <div>
+          <label htmlFor="barrio">Barrio:</label>
+          <input
+            type="text"
+            id="barrio"
+            value={barrio}
+            onChange={(event) => setBarrio(event.target.value)}
+          />
+        </div>
 
-      <label htmlFor="ciudad">Ciudad:</label>
-      <input
-        type="text"
-        id="ciudad"
-        value={ciudad}
-        onChange={(event) => setCiudad(event.target.value)}
-      />
+        <div>
+          <label htmlFor="ciudad">Ciudad:</label>
+          <input
+            type="text"
+            id="ciudad"
+            value={ciudad}
+            onChange={(event) => setCiudad(event.target.value)}
+          />
+        </div>
 
-      <label htmlFor="file">Archivo:</label>
-      <input type="file" id="file" onChange={handleFileChange} />
+        <div>
+          <label htmlFor="file"></label>
+          <input
+            type="file"
+            id="file"
+            onChange={handleFileChange}
+            multiple
+          />
+          <div className="previewContainer">
+            {fileNames.map((file, index) => (
+              <img key={file} src={file} alt={`Preview ${index}`} className="preview" />
+            ))}
+          </div>
+        </div>
 
-      <button type="submit">Crear problema</button>
-    </form>
+        <button type="submit" className="registro">
+          Crear problema
+        </button>
+      </form>
+    </div>
   );
 };
-
-
-
-
