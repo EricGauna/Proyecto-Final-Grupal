@@ -27,10 +27,6 @@ export const App = () => {
       element: <CreateProblema />,
     },
     {
-      path: "/search",
-      element: <Buscador />
-    },
-    {
       path: "/problemas/:problemasid",
       element: <DetalleProblema />,
     },
@@ -40,7 +36,7 @@ export const App = () => {
     },
     {
       path: "/user",
-      element: <User/>,
+      element: <User />,
     },
     {
       path: "/editProblema",
@@ -48,12 +44,12 @@ export const App = () => {
     },
   ])
   return (
-  <div>
-  <div>
-      <Cabecera></Cabecera>
-      </div>
     <div>
-      <RouterProvider router={router} />
+      <div>
+        <Cabecera></Cabecera>
+      </div>
+      <div>
+        <RouterProvider router={router} />
       </div>
     </div>
 
