@@ -101,12 +101,12 @@ export const Login = () => {
                 <button className="LogOut" onClick={() => {
                 logOut();
                 handleClick4();
-                }}>Log Out</button>
+        }}>Log Out</button>
                 </div>
               </div>
           ) : (
             <div>
-            <h2 className="WelcomeText">Bienvenid@</h2>
+              <h2 className="WelcomeText">Bienvenid@ </h2>
             <form onSubmit={loginNow} className={BoxStateCheck2} onClick={(e) => {e.stopPropagation()}}>
               <input
                 name="email"
