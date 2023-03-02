@@ -56,16 +56,7 @@ export const Login = () => {
   };
   let BoxStateCheck5 = BoxState3 ? "" : "Bienvenid@ ";
 
-
-  // USER DETAILS //
-
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-      const storedUser = JSON.parse(localStorage.getItem('user'));
-      setUser(storedUser);
-  }, []);
-
+  const user = JSON.parse(localStorage.getItem('user'));
 
   useEffect(() => {
     const user = loggedUser();
