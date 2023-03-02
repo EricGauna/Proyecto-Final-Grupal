@@ -74,8 +74,8 @@ export const Problemas = () => {
 
   const getData = async () => {
     const { data } = await getProblemas();
-    console.log(data);
-    setProblemas(data);
+    console.log(data.slice(0, 5)); 
+    setProblemas(data.slice(0, 5)); 
   };
 
   useEffect(() => {
