@@ -32,6 +32,17 @@ export const Login = () => {
     SetEyeState((EyeState) => !EyeState);
   };
   let EyeStateCheck = EyeState ? "fa-solid fa-eye" : "fa-solid fa-eye-slash";
+  //
+
+  // Reveal Box Function //
+
+  const [BoxState, SetBoxState] = useState(false);
+  const handleClick2 = () => {
+  SetBoxState((BoxState) => !BoxState);
+  };
+  let BoxStateCheck = BoxState ? "LogInBoxOpen" : "LogInBoxClosed";
+  let BoxStateCheck2 = BoxState ? "LogInForm" : "LogInFormHidden";
+
 
   useEffect(() => {
     const user = loggedUser();
@@ -43,8 +54,6 @@ export const Login = () => {
     }
   }, [loggedUser]);
 
-
-
   useEffect(() => {
     const user = loggedUser();
     if (user) {
@@ -54,7 +63,7 @@ export const Login = () => {
   
 
   return (
-    <div className={isLoggedIn ? "LogInBoxLoggedIn" : "LogInBox"}>
+    <div onClick={handleClick2} className={isLoggedIn ? "LogInBoxLoggedIn" : `${BoxStateCheck}`}>
       {loading ? (
         <div>Loading...</div>
       ) : (
@@ -65,7 +74,7 @@ export const Login = () => {
                 <button onClick={logOut}>Log Out</button>
               </div>
           ) : (
-            <form onSubmit={loginNow} className="LogInForm">
+            <form onSubmit={loginNow} className={BoxStateCheck2} onClick={(e) => {e.stopPropagation()}}>
               <input
                 name="email"
                 type="email"
@@ -81,8 +90,8 @@ export const Login = () => {
                 />
                 <i className={EyeStateCheck} id="showpass" onClick={handleClick}></i>
               </div>
-              <button className="boton">Login</button>
-              <a className="registro" href="/registeruser">Registrase</a>
+              <button className="btn btn-primary">Login</button>
+              <a href="/registeruser">Registrase</a>
             </form>
           )}
         </>
