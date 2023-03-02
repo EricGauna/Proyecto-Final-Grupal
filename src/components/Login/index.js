@@ -1,7 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import { login } from "../../services/user";
 import { UserContext } from "../../contexto/UserContext";
-
 import "./index.css"
 
 export const Login = () => {
@@ -16,9 +15,9 @@ export const Login = () => {
       const email = event.target.email.value
       const password = event.target.password.value
       const { data } = await login({ email, password })
-      console.log(data);
       loginUser(data);
       setIsLoggedIn(true);
+      window.location.reload(false);
     } catch (e) {
       alert(e)
       event.target.reset()
@@ -34,7 +33,7 @@ export const Login = () => {
   let EyeStateCheck = EyeState ? "fa-solid fa-eye" : "fa-solid fa-eye-slash";
   //
 
-  // Reveal Box Function //
+  // Reveal Box Functions //
 
   const [BoxState, SetBoxState] = useState(false);
   const handleClick2 = () => {
@@ -42,6 +41,29 @@ export const Login = () => {
   };
   let BoxStateCheck = BoxState ? "LogInBoxOpen" : "LogInBoxClosed";
   let BoxStateCheck2 = BoxState ? "LogInForm" : "LogInFormHidden";
+
+  const [BoxState2, SetBoxState2] = useState(false);
+  const handleClick3 = () => {
+  SetBoxState2((BoxState2) => !BoxState2);
+  };
+  let BoxStateCheck3 = BoxState2 ? "LogInBoxLoggedIn" : "LogInBoxLoggedInClosed";
+  let BoxStateCheck4 = BoxState2 ? "UserDetails" : "UserDetailsHidden";
+
+  const [BoxState3, SetBoxState3] = useState(false);
+  const handleClick4 = () => {
+  SetBoxState3((BoxState3) => !BoxState3);
+  };
+  let BoxStateCheck5 = BoxState3 ? "" : "Bienvenid@ ";
+
+
+  // USER DETAILS //
+
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+      const storedUser = JSON.parse(localStorage.getItem('user'));
+      setUser(storedUser);
+  }, []);
 
 
   useEffect(() => {
@@ -63,15 +85,24 @@ export const Login = () => {
   
 
   return (
-    <div onClick={handleClick2} className={isLoggedIn ? "LogInBoxLoggedIn" : `${BoxStateCheck}`}>
+    <div onClick={isLoggedIn ? handleClick3 : handleClick2} className={isLoggedIn ? `${BoxStateCheck3}` : `${BoxStateCheck}`}>
       {loading ? (
-        <div>Loading...</div>
+        <h2 className="WelcomeText">Loading...</h2>
       ) : (
         <>
             {isLoggedIn ? (
               <div>
-                <h1><a href="/user" className="Inicio">Bienvenid@, {loggedUser() ? loggedUser().name : "Usuario"}!</a></h1>
-                <button onClick={logOut}>Log Out</button>
+                <h2 className="WelcomeText">{BoxStateCheck5} {loggedUser() ? loggedUser().name : ""}</h2>
+                <div className={BoxStateCheck4} onClick={(e) => {e.stopPropagation()}}>
+                <div className="RoleDetails">
+                <p className="Email-Text">Mail: <br></br>{user.email}</p>
+                <p className="Role-Text">Rol: <br></br>{user.role}</p>
+                </div>
+                <button className="LogOut" onClick={() => {
+                logOut();
+                handleClick4();
+        }}>Log Out</button>
+                </div>
               </div>
           ) : (
             <form onSubmit={loginNow} className={BoxStateCheck2} onClick={(e) => {e.stopPropagation()}}>
@@ -90,8 +121,11 @@ export const Login = () => {
                 />
                 <i className={EyeStateCheck} id="showpass" onClick={handleClick}></i>
               </div>
-              <button className="btn btn-primary">Login</button>
-              <a href="/registeruser">Registrase</a>
+              <button className="Log-InButton">Login</button>
+              <div className="Buttons">
+              <i className="NO">¿No tienes cuenta? </i>
+              <a className="Register-Button" href="/registeruser">Registrate</a>
+              </div>
             </form>
           )}
         </>

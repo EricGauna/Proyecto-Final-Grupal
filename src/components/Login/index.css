@@ -36,6 +36,52 @@
   transition: ease-out 0.33s;
 }
 
+.LogInBoxLoggedInClosed {
+  position: absolute;
+  cursor: pointer;
+  z-index: 999;
+  top: 6rem;
+  left: 2.5rem;
+  background-color: var(--purplelov);
+  opacity: 75%;
+  border-radius: 22px 0px 0px 22px;
+  width: 13rem;
+  height: 3rem;
+  padding: 1rem;
+  margin: 2rem;
+  transition: ease-out 0.33s;
+}
+
+.LogInBoxLoggedIn {
+  z-index: 999;
+  position: absolute;
+  cursor: pointer;
+  top: 6rem;
+  left: 2.5rem;
+  background: linear-gradient(
+    180deg,
+    rgba(62, 41, 146, 0.85) 0%,
+    rgba(62, 41, 146, 0) 100%
+  );
+  opacity: 75%;
+  border-radius: 22px 0px 0px 22px;
+  width: 13rem;
+  height: 13rem;
+  padding: 1rem;
+  margin: 2rem;
+  transition: ease-out 0.33s;
+}
+
+.WelcomeText {
+  display: flex;
+  user-select: none;
+  align-items: center;
+  margin-top: -0.22rem;
+  text-indent: 0.4rem;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
 .Opener{
   width: 1rem;
   height: 1rem;
@@ -50,18 +96,6 @@
   display: flex;
   animation: fadeIn 0.65s;
   flex-direction: column;
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0%;
-  }
-  10% {
-    opacity: 0%;
-  }
-  100% {
-    opacity: 100%;
-  }
 }
 
 .form-control {
@@ -113,10 +147,10 @@ input[type="email"] {
   display: none;
   position: absolute;
   cursor: pointer;
-  opacity: 65%;
+  opacity: 85%;
   top: 20%;
   left: 85%;
-  color: rgb(255, 255, 255);
+  color: rgb(109, 109, 109);
   font-size: 0.95rem;
 }
 
@@ -126,16 +160,98 @@ input[type="email"] {
 
 /* Buttons */
 
-.registro{
-  display: flex;
-  align-self: center;
-  cursor: pointer;
+.Log-InButton {
+  all:unset;
+  width: 178.86px;
+  display: inline;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.781);
+  height: 2rem;
+  border-radius: 11px;
+  margin-bottom: 1rem;
 }
 
-.boton{
-  padding: 0.4rem;
-  border-radius: 25px;
+.Register-Button {
+  all:unset;
+  text-align: center;
+  text-decoration: underline;
+  top: -20%;
+  font-size: 0.75rem;
+  height: 2rem;
+  border-radius: 11px;
+  text-indent: 0.2rem;
+}
+
+.NO {
+  all:unset;
+  cursor: auto;
+  user-select: none;
+  text-align: center;
+  font-size: 0.75rem;
+  height: 2rem;
+  border-radius: 11px;
+}
+
+.Buttons {
+  display: flex;
+  justify-content: center;
+}
+
+/* User Details */
+
+.UserDetailsHidden {
+  display: none;
+}
+
+.UserDetails {
+  display: flex;
+  animation: fadeIn 0.95s;
+  flex-direction: column;
+}
+
+.Role-Text::selection, .Email-Text::selection  {
+  background: #1e4273;
+}
+
+.RoleDetails {
+  font-size: 0.9rem;
+  margin-left: 0.5rem;
+  margin-top: 1rem;
+  cursor: text;
+}
+
+.Role-Text {
+  margin-top: 0.5rem;
+}
+
+.LogOut{
+  all:unset;
+  width: 178.86px;
+  position: relative;
+  top: 1rem;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.781);
+  height: 2rem;
+  border-radius: 11px;
   margin-bottom: 1rem;
-  cursor: pointer;
-  
+}
+
+
+/* Animations */
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0%;
+  }
+  10% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
+.Loading {
+  z-index: 99;
+  font-size: 20rem;
 }
