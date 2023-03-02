@@ -42,6 +42,10 @@ export const App = () => {
       path: "/user",
       element: <User/>,
     },
+    {
+      path: "/editProblema",
+      element: <User />,
+    },
   ])
   return (
   <div>
