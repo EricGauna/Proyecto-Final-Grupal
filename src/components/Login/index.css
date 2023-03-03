@@ -27,7 +27,6 @@
     rgba(62, 41, 146, 0.85) 0%,
     rgba(62, 41, 146, 0) 100%
   );
-  opacity: 75%;
   border-radius: 22px 0px 0px 22px;
   width: 13rem;
   height: 13rem;
@@ -63,7 +62,6 @@
     rgba(62, 41, 146, 0.85) 0%,
     rgba(62, 41, 146, 0) 100%
   );
-  opacity: 75%;
   border-radius: 22px 0px 0px 22px;
   width: 13rem;
   height: 13rem;

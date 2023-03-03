@@ -16,7 +16,7 @@
 
 .Search {
   background-color: #32216F;
-  opacity: 75%;
+  opacity: 90%;
   border-radius: 0px 22px 22px 0px;
   cursor: pointer;
   width: 10%;
@@ -32,7 +32,7 @@
   align-items: center;
   text-align: center;
   background-color: #32216F;
-  opacity: 75%;
+  opacity: 90%;
   border-radius: 0px 0px 0px 0px;
   cursor: pointer;
   width: 7%;
