@@ -7,6 +7,7 @@ import { Registeruser } from "./views/RegisterUser";
 import { Cabecera } from "./components/Cabecera";
 import { ImageGallery } from "./views/Images";
 import { User } from "./views/User";
+import { EditProblema } from "./views/EditProblemas";
 
 
 
@@ -43,8 +44,8 @@ export const App = () => {
       element: <User />,
     },
     {
-      path: "/editProblema",
-      element: <User />,
+      path: "/problemas/:problemasid/edit",
+      element: <EditProblema />,
     },
   ])
   return (

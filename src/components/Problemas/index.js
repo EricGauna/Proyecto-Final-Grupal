@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import { getProblemas, searchProblemas } from "../../services/Problemas";
+import { getImages, getProblemas, searchProblemas } from "../../services/Problemas";
 import { Buscador } from "../Buscador";
 import { createSearchParams } from "react-router-dom";
 import { useQuery } from "../../hooks/useQuery";
@@ -11,50 +11,50 @@ export const Problemas = () => {
   const [problemas, setProblemas] = useState([]);
   const [imagenProblema, setImagenProblema] = useState("");
   const query = useQuery();
-  
   const [filter, setFilter] = useState((query.get("search") || "").toLocaleLowerCase());
   const navigate = useNavigate();
 
+  const getData = async () => {
+    const { data } = await getProblemas();
+    console.log(data.slice(0, 5));
+    setProblemas(data.slice(0, 5));
+  };
+
   useEffect(() => {
-    const cont = document.querySelector(".cont");
-    cont.classList.remove("s--inactive");
+    getData();
   }, []);
 
   useEffect(() => {
     const getData = async () => {
       const { data } = await searchProblemas(filter);
-      console.log(data);
       setProblemas(data.slice(0, 5));
     };
     getData();
   }, [filter]);
 
   useEffect(() => {
-    const getImagenes = async () => {
-      const promises = problemas.map(async (problema) => {
-        if (problema.images && problema.images.length > 0) {
-          const response = await fetch(`http://localhost:8080/images/${problema.images[0].images}`);
-          const blob = await response.blob();
-          const url = URL.createObjectURL(blob);
-          return url;
-        }
-        return "";
-      });
-      const urls = await Promise.all(promises);
-      setImagenProblema(urls);
+    const fetchImages = async () => {
+      const imageIds = problemas.flatMap((problema) => problema.images.map((image) => image.images));
+      const { data } = await getImages();
+      const imageUrls = data.filter((image) => imageIds.includes(image.images)).map((image) => image.url);
+      setImagenProblema(imageUrls);
     };
-    getImagenes();
+    fetchImages();
   }, [problemas]);
 
   useEffect(() => {
     const elBgs = document.querySelectorAll(".el__bg");
     elBgs.forEach((elBg, index) => {
       if (imagenProblema[index]) {
-        elBg.style.setProperty("--imagen-problema", `url('${imagenProblema[index]}')`);
+        elBg.style.setProperty("--imagen-problema", `url('${imagenProblema}')`);
       }
     });
-  }, [imagenProblema,problemas]);
-
+  }, [imagenProblema]);
+  
+  useEffect(() => { 
+    const cont = document.querySelector(".cont");
+    cont.classList.remove("s--inactive");
+  }, []);
   const handleElClick = (event) => {
     const target = event.currentTarget;
     if (target.classList.contains("s--active")) return;
@@ -72,17 +72,6 @@ export const Problemas = () => {
       activeEl.classList.remove("s--active");
     }
   };
-
-  const getData = async () => {
-    const { data } = await getProblemas();
-    console.log(data.slice(0, 5));
-    setProblemas(data.slice(0, 5));
-  };
-  
-  useEffect(() => {
-    getData();
-  }, []);
-
   const handleSearch = ({ value, option }) => {
     const searchParams = createSearchParams({
       [option]: value,
