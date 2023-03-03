@@ -18,7 +18,6 @@ export const Login = () => {
       loginUser(data);
       console.log(data);
       setIsLoggedIn(true);
-      window.location.reload(false);
     } catch (e) {
       alert(e)
       event.target.reset()
@@ -56,16 +55,7 @@ export const Login = () => {
   };
   let BoxStateCheck5 = BoxState3 ? "" : "Bienvenid@ ";
 
-
-  // USER DETAILS //
-
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-      const storedUser = JSON.parse(localStorage.getItem('user'));
-      setUser(storedUser);
-  }, []);
-
+  const user = JSON.parse(localStorage.getItem('user'));
 
   useEffect(() => {
     const user = loggedUser();
@@ -76,8 +66,6 @@ export const Login = () => {
       setLoading(false);
     }
   }, [loggedUser]);
-
-  
 
   return (
     <div onClick={isLoggedIn ? handleClick3 : handleClick2} className={isLoggedIn ? `${BoxStateCheck3}` : `${BoxStateCheck}`}>

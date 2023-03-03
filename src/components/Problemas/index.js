@@ -78,7 +78,7 @@ export const Problemas = () => {
     console.log(data.slice(0, 5));
     setProblemas(data.slice(0, 5));
   };
-
+  
   useEffect(() => {
     getData();
   }, []);
