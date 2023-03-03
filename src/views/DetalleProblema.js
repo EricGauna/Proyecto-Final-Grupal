@@ -28,16 +28,16 @@ export const DetalleProblema = () => {
             {!problema && <span>No hemos encontrado el problema seleccionado</span>}
             {problema && (
                 <div>
-                    <h2>Detalles de {problema.title}</h2>
-                    <p>{problema.description}</p>
-                    <p>{problema.barrio}, {problema.ciudad}</p>
-                    <p>{problema.likes}</p>
+                    <h2 className="Detalle-Title">{problema.title}</h2>
+                    <p className="Detalle-Description">{problema.description}</p>
+                    <p className="Detalle-Barrio">{problema.barrio}, {problema.ciudad}</p>
+                    <p className="Detalle-Likes">{problema.likes}</p>
                     <div>
-                        <h3>Imágenes:</h3>
+                        <div className="Detalle">
                         {imagenes.map(image => (
-                            <img key={image.filename} src={`http://localhost:8080${image.url}`} alt={image.filename} />
+                            <img className="Image" key={image.filename} src={`http://localhost:8080${image.url}`} alt={image.filename} />
                         ))}
-                        
+                        </div>
                         <button></button>
                     </div>
                 </div>

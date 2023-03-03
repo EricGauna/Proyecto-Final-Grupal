@@ -20,14 +20,13 @@
   z-index: 999;
   position: absolute;
   cursor: pointer;
-  top: 4rem;
+  top: 1rem;
   left: 2.5rem;
   background: linear-gradient(
     180deg,
     rgba(62, 41, 146, 0.85) 0%,
     rgba(62, 41, 146, 0) 100%
   );
-  opacity: 75%;
   border-radius: 22px 0px 0px 22px;
   width: 13rem;
   height: 13rem;
@@ -56,14 +55,13 @@
   z-index: 999;
   position: absolute;
   cursor: pointer;
-  top: 4rem;
+  top: 1rem;
   left: 2.5rem;
   background: linear-gradient(
     180deg,
     rgba(62, 41, 146, 0.85) 0%,
     rgba(62, 41, 146, 0) 100%
   );
-  opacity: 75%;
   border-radius: 22px 0px 0px 22px;
   width: 13rem;
   height: 13rem;

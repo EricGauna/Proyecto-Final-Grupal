@@ -1,3 +1,33 @@
-.Detalle{
-    color: aliceblue;
+.Detalle {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.Detalle-Title {
+    text-align: center;
+    font-size: 3rem;
+}
+
+.Detalle-Description {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 1rem;
+}
+
+.Detalle-Barrio {
+    text-align: center;
+    font-style: italic;
+}
+
+.Image {
+    width: 30rem;
+    border-radius: 11px;
+    align-items: center;
+    margin: 2rem;
+}
+
+.Images {
+    display: block;
 }
