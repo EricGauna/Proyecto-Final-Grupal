@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import { getImages, getProblemas, searchProblemas } from "../../services/Problemas";
+import { getProblemas, searchProblemas } from "../../services/Problemas";
 import { Buscador } from "../Buscador";
 import { createSearchParams } from "react-router-dom";
 import { useQuery } from "../../hooks/useQuery";
@@ -27,34 +27,44 @@ export const Problemas = () => {
   useEffect(() => {
     const getData = async () => {
       const { data } = await searchProblemas(filter);
+      console.log(data.slice(0, 5));
       setProblemas(data.slice(0, 5));
     };
     getData();
   }, [filter]);
 
   useEffect(() => {
-    const fetchImages = async () => {
-      const imageIds = problemas.flatMap((problema) => problema.images.map((image) => image.images));
-      const { data } = await getImages();
-      const imageUrls = data.filter((image) => imageIds.includes(image.images)).map((image) => image.url);
-      setImagenProblema(imageUrls);
+    const getImagenes = async () => {
+      const promises = problemas.map(async (problema) => {
+        if (problema.images && problema.images.length > 0) {
+          const response = await fetch(`http://localhost:8080/images/${problema.images[0].images}`);
+          const blob = await response.blob();
+          const url = URL.createObjectURL(blob);
+          return url;
+        }
+        return "";
+      });
+      const urls = await Promise.all(promises);
+      setImagenProblema(urls);
     };
-    fetchImages();
+    getImagenes();
   }, [problemas]);
+
+
+  useEffect(() => {
+    const cont = document.querySelector(".cont");
+    cont.classList.remove("s--inactive");
+  }, []);
 
   useEffect(() => {
     const elBgs = document.querySelectorAll(".el__bg");
     elBgs.forEach((elBg, index) => {
       if (imagenProblema[index]) {
-        elBg.style.setProperty("--imagen-problema", `url('${imagenProblema}')`);
+        elBg.style.setProperty("--imagen-problema", `url('${imagenProblema[index]}')`);
       }
     });
   }, [imagenProblema]);
-  
-  useEffect(() => { 
-    const cont = document.querySelector(".cont");
-    cont.classList.remove("s--inactive");
-  }, []);
+
   const handleElClick = (event) => {
     const target = event.currentTarget;
     if (target.classList.contains("s--active")) return;
@@ -72,6 +82,9 @@ export const Problemas = () => {
       activeEl.classList.remove("s--active");
     }
   };
+
+  
+
   const handleSearch = ({ value, option }) => {
     const searchParams = createSearchParams({
       [option]: value,
