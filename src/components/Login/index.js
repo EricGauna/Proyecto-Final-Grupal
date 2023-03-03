@@ -18,7 +18,6 @@ export const Login = () => {
       loginUser(data);
       console.log(data);
       setIsLoggedIn(true);
-      window.location.reload(false);
     } catch (e) {
       alert(e)
       event.target.reset()
@@ -67,8 +66,6 @@ export const Login = () => {
       setLoading(false);
     }
   }, [loggedUser]);
-
-  
 
   return (
     <div onClick={isLoggedIn ? handleClick3 : handleClick2} className={isLoggedIn ? `${BoxStateCheck3}` : `${BoxStateCheck}`}>
