@@ -30,16 +30,18 @@ export const EditProblema = () => {
     };
 
     return (
-        <div className="recuadro">
+        <div>
             {!problema && <span>No hemos encontrado el problema seleccionado</span>}
             {problema && (
-                <div>
-                    <h2 className="titulo">Detalles de {problema.title}</h2>
-                    <p className="descripcion">{problema.description}</p>
-                    <p className="lugar">
-                        {problema.barrio}, {problema.ciudad}
-                    </p>
-                    <p className="likes">{problema.likes}</p>
+                <span className="recuadro" >
+                    <div className="texto">
+                        <h2 className="titulo">Detalles de {problema.title}</h2>
+                        <p className="descripcion">{problema.description}</p>
+                        <p className="lugar">
+                            {problema.barrio}, {problema.ciudad}
+                        </p>
+                        <p className="likes">{problema.likes}</p>
+                    </div>
                     <h3>Imágenes:</h3>
                     <div className="contenedor-imagenes">
                         <img
@@ -60,8 +62,9 @@ export const EditProblema = () => {
                             ))}
                         </div>
                     </div>
-                </div>
-            )}
-        </div>
-    );
-};
+                </span>)}
+        </div>)
+}
+
+
+

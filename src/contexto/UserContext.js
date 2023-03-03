@@ -16,7 +16,7 @@ export const UserProvider = ({ children }) => {
         console.log(newUser);
     }
     const isAuthorized = () => {
-        return user !== undefined && !!user.role
+        return user !== undefined && user.role === "admin";
     }
     const loggedUser = () => {
         if (isAuthorized()) {
