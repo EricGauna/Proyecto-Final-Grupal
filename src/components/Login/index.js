@@ -84,7 +84,7 @@ export const Login = () => {
                 <button className="LogOut" onClick={() => {
                 logOut();
                 handleClick4();
-        }}>Log Out</button>
+                }}>Log Out</button>
                 </div>
               </div>
           ) : (

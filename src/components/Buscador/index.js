@@ -22,18 +22,19 @@ export const Buscador = ({ defaultValue, onSearch, options, option1, option2, op
 
   return (
     <form onSubmit={handleSearch}>
-      <div className="input">
+      <div className="SearchBar">
         <input
           name="value"
           type="text"
-          className="form-control"
+          className="InputSearch"
+          id="SearchText"
           placeholder="Buscar problema"
           value={searchValues.value}
           onChange={handleInputChange}
         />
         <select
           name="option"
-          className="form-select"
+          className="OptionSearch"
           value={searchValues.option}
           onChange={handleInputChange}
         >
@@ -43,7 +44,7 @@ export const Buscador = ({ defaultValue, onSearch, options, option1, option2, op
             </option>
           ))}
         </select>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="Search">
           Buscar
         </button>
       </div>

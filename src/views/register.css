@@ -19,10 +19,10 @@
 }
 
 .formulario input {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
   padding: 0.4rem;
-  border-radius: 25px;
+  border-radius: 11px;
   width: 100%;
   border: none;
   outline: none;
@@ -35,15 +35,18 @@
   align-items: center;
   height: 75%;
   font-size: 1.2rem;
-  background-color: #000000;
 }
 
 .registro{
     display: flex;
     align-items: center;
-    border-radius: 25px;
+    border-radius: 11px;
     padding: 0.5rem;
+    background-color: #2E1F6D;
+    width: 10rem;
 }
+
 #name{
     margin-bottom: 1rem;
+    border-radius: 11px;
 }
