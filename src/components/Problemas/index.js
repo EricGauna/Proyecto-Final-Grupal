@@ -1,22 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { getProblemas, searchProblemas } from "../../services/Problemas";
 import { Buscador } from "../Buscador";
-import { createSearchParams } from "react-router-dom";
+import { createSearchParams, Link } from "react-router-dom";
 import { useQuery } from "../../hooks/useQuery";
-
 import "./index.css";
+import { UserContext } from "../../contexto/UserContext";
 
 export const Problemas = () => {
   const [problemas, setProblemas] = useState([]);
   const [imagenProblema, setImagenProblema] = useState("");
   const query = useQuery();
   const [filter, setFilter] = useState((query.get("search") || "").toLocaleLowerCase());
+  const user = useContext(UserContext);
+
   const navigate = useNavigate();
 
   const getData = async () => {
     const { data } = await getProblemas();
-    // console.log(data.slice(0, 5));
     setProblemas(data.slice(0, 5));
   };
 
@@ -27,7 +28,6 @@ export const Problemas = () => {
   useEffect(() => {
     const getData = async () => {
       const { data } = await searchProblemas(filter);
-      // console.log(data.slice(0, 5));
       setProblemas(data.slice(0, 5));
     };
     getData();
@@ -83,7 +83,7 @@ export const Problemas = () => {
     }
   };
 
-  
+
 
   const handleSearch = ({ value, option }) => {
     const searchParams = createSearchParams({
@@ -95,13 +95,21 @@ export const Problemas = () => {
   };
 
   const showDetail = (id) => {
-    // console.info(id);
     navigate(`/problemas/${id}`);
   };
 
   return (
     <div className="Appcontainer">
       <header>
+        <div>
+          <div>
+            {user.isAuthorized() && (
+              <div>
+                <Link to={`/createproblema`}>
+                  <button>Crear problema</button>
+                </Link>
+              </div>)}
+          </div>
         <Buscador
           className="buscador"
           initialValue={filter}
@@ -112,7 +120,8 @@ export const Problemas = () => {
             { value: "Estado", key: "estado" },
             { value: "Título", key: "title" },
           ]}
-        />
+          />
+        </div>
       </header>
 
 
