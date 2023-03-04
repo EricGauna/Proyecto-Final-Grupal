@@ -40,14 +40,12 @@ export const getImages = async () => {
     const { data } = await axios.get(
       `http://localhost:8080/images`
     )
-    console.log(data);
+    // console.log(data);
     return (data)
   } catch (e) {
     return {}
   }
 }
-
-
 
 export const searchProblemas = async (searchParams) => {
   try {

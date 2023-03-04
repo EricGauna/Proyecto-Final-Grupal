@@ -16,7 +16,7 @@ export const Problemas = () => {
 
   const getData = async () => {
     const { data } = await getProblemas();
-    console.log(data.slice(0, 5));
+    // console.log(data.slice(0, 5));
     setProblemas(data.slice(0, 5));
   };
 
@@ -27,7 +27,7 @@ export const Problemas = () => {
   useEffect(() => {
     const getData = async () => {
       const { data } = await searchProblemas(filter);
-      console.log(data.slice(0, 5));
+      // console.log(data.slice(0, 5));
       setProblemas(data.slice(0, 5));
     };
     getData();
@@ -91,11 +91,11 @@ export const Problemas = () => {
     }).toString();
     navigate({ pathname: "/search", search: searchParams });
     setFilter(searchParams);
-    console.log(searchParams);
+    // console.log(searchParams);
   };
 
   const showDetail = (id) => {
-    console.info(id);
+    // console.info(id);
     navigate(`/problemas/${id}`);
   };
 

@@ -4,28 +4,29 @@ import { getProblemaById, getImages } from "../services/Problemas";
 import { UserContext } from "../contexto/UserContext";
 import { Link } from "react-router-dom";
 import "./detalle.css";
+import Slideshow from "../components/Slideshow/Slideshow";
 
 export const DetalleProblema = () => {
     const { problemasid: id } = useParams();
     const user = useContext(UserContext);
     const [problema, setProblema] = useState({});
     const [imagenes, setImagenes] = useState([]);
-    console.log(user.isAuthorized);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const loadData = async () => {
             const { data } = await getProblemaById(id);
-            console.log(data);
             setProblema(data);
-
             const imagesData = await getImages();
             const filteredImages = imagesData.filter((image) =>
                 data.images.find((img) => img.images === image.filename)
             );
             setImagenes(filteredImages);
+            setIsLoading(false);
         };
         loadData();
     }, [id]);
+
 
     return (
         <div className="Detalle">
@@ -39,15 +40,12 @@ export const DetalleProblema = () => {
                     </p>
                     <p className="Detalle-Likes">{problema.likes}</p>
                     <div>
-                        <div className="Detalle">
-                            {imagenes.map((image) => (
-                                <img
-                                    className="Image"
-                                    key={image.filename}
-                                    src={`http://localhost:8080${image.url}`}
-                                    alt={image.filename}
-                                />
-                            ))}
+                        <div className="SlideShow">
+                        {isLoading ? (
+                        <p>Loading images...</p>
+                        ) : (
+                            <Slideshow images={imagenes.map((image) => image.url)} />
+                        )}
                         </div>
                         {user.isAuthorized() && (
                             <div>
