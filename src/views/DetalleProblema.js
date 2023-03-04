@@ -26,6 +26,11 @@ export const DetalleProblema = () => {
         };
         loadData();
     }, [id]);
+    
+    imagenes.map((image) => {
+        console.log(image.url)
+    })
+    
 
 
     return (
@@ -44,7 +49,7 @@ export const DetalleProblema = () => {
                         {isLoading ? (
                         <p>Loading images...</p>
                         ) : (
-                            <Slideshow images={imagenes.map((image) => image.url)} />
+                            <Slideshow images={imagenes.map((image) => `http://localhost:8080${image.url}`)} />
                         )}
                         </div>
                         {user.isAuthorized() && (
