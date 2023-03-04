@@ -26,7 +26,7 @@ export const DetalleProblema = () => {
         };
         loadData();
     }, [id]);
-    
+
     return (
         <div className="Detalle">
             {!problema && <span>No hemos encontrado el problema seleccionado</span>}

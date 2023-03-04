@@ -1,26 +1,57 @@
-import React from 'react';
-import Slider from 'react-slick';
+import React, { useState } from 'react';
+import './index.css';
 
-function Slideshow(props) {
-  const { images } = props;
+function SlideShow({ images }) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState(null);
 
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1
+  const handleNext = () => {
+    setDirection('next');
+    const nextIndex = (currentIndex + 1) % images.length;
+    setCurrentIndex(nextIndex);
   };
 
+  const handlePrevious = () => {
+    setDirection('previous');
+    const previousIndex = (currentIndex - 1 + images.length) % images.length;
+    setCurrentIndex(previousIndex);
+  };
+
+  //Hover Effect // 
+
+  const [ButtonState, SetButtonState] = useState(false);
+  const [ButtonState2, SetButtonState2] = useState(false);
+  const hoverL = () => {
+    SetButtonState((ButtonState) => !ButtonState);
+    };
+    const hoverR = () => {
+    SetButtonState2((ButtonState2) => !ButtonState2);
+    };
+  let ButtonStateCheck = ButtonState ? "NH" : "";
+  let ButtonStateCheck2 = ButtonState2 ? "PH" : "";
+
   return (
-    <Slider {...settings}>
-      {images.map((filename, index) => (
-        <div key={index}>
-          <img src={filename} alt={`Slide ${index + 1}`} />
-        </div>
-      ))}
-    </Slider>
+    <div className="slider-container">
+      <div className={`slider-image-wrapper ${direction}`}>
+        {images.map((image, index) => (
+          <div
+            key={index}
+            className={`slider-image ${index === currentIndex ? 'active' : ''}`}
+          >
+            <img src={image} alt="" />
+            {images.length > 1 && (
+              <div className="slider-controls">
+                <button   onMouseEnter={hoverL} 
+                          onMouseLeave={hoverL} onClick={handlePrevious} className={ButtonStateCheck}></button>
+                <button   onMouseEnter={hoverR} 
+                          onMouseLeave={hoverR} onClick={handleNext} className={ButtonStateCheck2}></button>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }
 
-export default Slideshow;
+export default SlideShow;
