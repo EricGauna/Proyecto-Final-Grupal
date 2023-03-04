@@ -4,6 +4,7 @@
 }
 
 html {
+  all: unset;
   background: url(image.png);
   background-repeat: no-repeat;
   background-position: top;
@@ -25,3 +26,4 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+

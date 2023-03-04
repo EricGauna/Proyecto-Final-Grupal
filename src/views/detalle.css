@@ -5,6 +5,14 @@
     justify-content: center;
 }
 
+.Slideshow {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+
 .Detalle-Title {
     text-align: center;
     font-size: 3rem;

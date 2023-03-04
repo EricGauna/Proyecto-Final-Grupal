@@ -1,0 +1,6 @@
+                        <div className="Detalle">
+
+                        </div>
+
+
+style={{backgroundImage: `url(${Slides[currentIndex].url})`}}
