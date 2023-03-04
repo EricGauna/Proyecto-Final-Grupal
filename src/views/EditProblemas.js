@@ -42,8 +42,8 @@ export const EditProblema = () => {
                         </p>
                         <p className="likes">{problema.likes}</p>
                     </div>
-                    <h3>Imágenes:</h3>
                     <div className="contenedor-imagenes">
+                    <h3>Imágenes:</h3>
                         <img
                             className="imagen-actual"
                             src={`http://localhost:8080${imagenActual}`}

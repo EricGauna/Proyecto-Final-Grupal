@@ -27,10 +27,7 @@ export const DetalleProblema = () => {
         loadData();
     }, [id]);
     
-    imagenes.map((image) => {
-        console.log(image.url)
-    })
-    
+   
 
 
     return (
