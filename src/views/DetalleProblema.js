@@ -31,8 +31,6 @@ export const DetalleProblema = () => {
         console.log(image.url)
     })
     
-
-
     return (
         <div className="Detalle">
             {!problema && <span>No hemos encontrado el problema seleccionado</span>}
