@@ -1,125 +1,41 @@
-.texto{
-  display: grid;
-  grid-area: texto;
+.Detalle {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.Slideshow {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
 }
 
 
-
-.recuadro {
-display: grid;
-width: 100%;
-height: 100%;
-border: 1px solid rgb(252, 249, 249);
-padding: 20px;
-grid-template-columns: 1fr 1fr;
-grid-template-areas: 
-'texto fotos';
+.Detalle-Title {
+    text-align: center;
+    font-size: 3rem;
 }
 
-.titulo {
-font-size: 24px;
-font-weight: bold;
-margin-bottom: 10px;
+.Detalle-Description {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 1rem;
 }
 
-.descripcion {
-font-size: 18px;
-margin-bottom: 10px;
-max-width: 45%;
-display: inline-block;
+.Detalle-Barrio {
+    text-align: center;
+    font-style: italic;
 }
 
-.lugar {
-font-size: 16px;
-margin-bottom: 10px;
-max-width: 45%;
-display: inline-block;
-}
-.navegacion-imagenes{
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.Image {
+    width: 30rem;
+    border-radius: 11px;
+    align-items: center;
+    margin: 2rem;
 }
 
-.likes {
-font-size: 16px;
-margin-bottom: 10px;
-max-width: 45%;
-display: inline-block;
+.Images {
+    display: block;
 }
-
-.contenedor-imagenes {
-  display: flex;
-  align-content: center;
-justify-content: center;
-align-items: center;
-margin-bottom: 1rem;
-padding: 1rem;
-max-width: 100%;
-display: grid;
-grid-area: fotos;
-}
-
-.imagen-actual {
-width: 500px;
-height: 500px;
-object-fit: cover;
-border-radius: 35px;
-margin-bottom: 1rem;
-}
-
-.miniatura {
-width: 100px;
-height: 100px;
-object-fit: cover;
-margin: 10px;
-cursor: pointer;
-}
-
-.miniatura-imagen {
-width: 100px;
-height: 100px;
-object-fit: cover;
-margin-right: 10px;
-cursor: pointer;
-opacity: 0.5;
-border-radius: 25px;
-transition: opacity 0.3s ease-in-out;
-}
-
-.miniatura-imagen:hover {
-opacity: 1;
-}
-
-@media only screen and (max-width: 800px) {
-.recuadro {
-  width: 100%;
-  height: 100%;
-  flex-direction: column;
-}
-
-.contenedor-imagenes {
-  margin: 20px auto 0 auto;
-}
-
-.imagen-principal {
-  width: 100%;
-  height: auto;
-  margin-right: 0;
-}
-
-.miniatura {
-  width: 70px;
-  height: 70px;
-  cursor: pointer;
-  opacity: 1;
-}
-}
-
-.descripcion {
-flex-shrink: 0;
-font-size: 18px;
-margin-bottom: 10px;
-max-width: 45%;
-}
-

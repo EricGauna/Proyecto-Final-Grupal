@@ -1,17 +1,20 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { getProblemaById, getImages, editProblemasById } from "../services/Problemas";
+import Slideshow from "../components/Slideshow/Slideshow";
 import { UserContext } from "../contexto/UserContext";
-import { editProblemasById, getImages, getProblemaById } from "../services/Problemas";
-import "./editProblemas.css";
+import "./detalle.css";
 
 export const EditProblema = () => {
     const { problemasid: id } = useParams();
-    const [problema, setProblema] = useState({});
-    const [imagenes, setImagenes] = useState([]);
-    const [imagenActual, setImagenActual] = useState("");
-    const [editando, setEditando] = useState(false);
-    const [problemaEditado, setProblemaEditado] = useState([]);
+    const [problema, setProblema] = useState({ title: "", Description: "", ciudad: "", barrio: "" });
+    const [title, setTitle] = useState("");
+    const [description, setDescription] = useState("");
+    const [barrio, setBarrio] = useState("");
+    const [ciudad, setCiudad] = useState("");
     const [files, setFiles] = useState([]);
+    const [imagenes, setImagenes] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
     const [fileNames, setFileNames] = useState([]);
     const { loggedUser } = useContext(UserContext);
 
@@ -22,24 +25,16 @@ export const EditProblema = () => {
             const { data } = await getProblemaById(id);
             console.log(data);
             setProblema(data);
-
             const imagesData = await getImages();
             const filteredImages = imagesData.filter((image) =>
                 data.images.find((img) => img.images === image.filename)
             );
             setImagenes(filteredImages);
-            setImagenActual(filteredImages[0]?.url || "");
+            setIsLoading(false);
         };
         loadData();
     }, [id]);
 
-    const handleClick = (url) => {
-        setImagenActual(url);
-    };
-
-    const handleEdit = () => {
-        setEditando(true);
-    };
 
     const handleFileChange = (event) => {
         const selectedFiles = event.target.files;
@@ -49,14 +44,15 @@ export const EditProblema = () => {
             URL.createObjectURL(file)))
     };
 
-    const handleUpdate = async () => {
+
+    const handleSubmit = async (event) => {
         const token = loggedUser()?.token;
+        event.preventDefault();
         const formData = new FormData();
-        console.log(problemaEditado);
-        formData.append("title", problemaEditado.title);
-        formData.append("description", problemaEditado.description);
-        formData.append("barrio", problemaEditado.barrio);
-        formData.append("ciudad", problemaEditado.ciudad);
+        formData.append("title", problema.title);
+        formData.append("description", problema.description);
+        formData.append("barrio", problema.barrio);
+        formData.append("ciudad", problema.ciudad);
         for (let i = 0; i < files.length; i++) {
             formData.append("images", files[i]);
         }
@@ -68,118 +64,85 @@ export const EditProblema = () => {
             },
         };
         try {
-            const data = await editProblemasById(formData, config, id);
-            setProblema(data);
-            setProblemaEditado(data);
-            setEditando(false);
-            console.log(data);
+            const response = await editProblemasById(formData, config, id);
+            console.log(response);
         } catch (error) {
             console.error(error);
         }
     };
 
-    const handleInputChange = (event) => {
-        setProblema({
-            ...problema,
-            [event.target.name]: event.target.value,
-        });
-    };
-
     return (
-        <div>
+        <div className="Detalle">
             {!problema && <span>No hemos encontrado el problema seleccionado</span>}
             {problema && (
-                <span className="recuadro">
-                    <div className="texto">
-                        <h2 className="titulo">Detalles de {problema.title}</h2>
-                        <div className="descripcion-wrapper">
-                            {editando ? (
-                                <input
-                                    className="descripcion-input"
-                                    type="text"
-                                    name="description"
-                                    value={problema.description}
-                                    onChange={handleInputChange}
-                                />
-                            ) : (
-                                <p className="descripcion">{problema.description}</p>
-                            )}
-                        </div>
-                        <div className="barrio-wrapper">
-                            {editando ? (
-                                <input
-                                    className="barrio-input"
-                                    type="text"
-                                    name="barrio"
-                                    value={problema.barrio}
-                                    onChange={handleInputChange}
-                                />
-                            ) : (
-                                <p className="barrio">{problema.barrio}</p>
-                            )}
-                        </div>
-                        <div className="ciudad-wrapper">
-                            {editando ? (
-                                <input
-                                    className="ciudad-input"
-                                    type="text"
-                                    name="ciudad"
-                                    value={problema.ciudad}
-                                    onChange={handleInputChange}
-                                />
-                            ) : (
-                                <p className="ciudad">{problema.ciudad}</p>
-                            )}
-                        </div>
-                        <p className="likes">{problema.likes}</p>
+                <form className="formulario" onSubmit={handleSubmit}>
+                    <div>
+                        <label htmlFor="title">Título:</label>
+                        <input
+                            type="text"
+                            id="title"
+                            value={title}
+                            onChange={(event) => setTitle(event.target.value)}
+                        />
                     </div>
 
-                    <div className="contenedor-imagenes">
-                        <h3>Imágenes:</h3>
-                        <img
-                            className="imagen-actual"
-                            src={`http://localhost:8080${imagenActual}`}
-                            alt=""
+                    <div>
+                        <label htmlFor="description">Descripción:</label>
+                        <textarea
+                            id="description"
+                            value={description}
+                            onChange={(event) => setDescription(event.target.value)}
                         />
-                        <div className="navegacion-imagenes">
-                            {editando ? (
-                                <div>
-                                    <label htmlFor="file"></label>
-                                    <input
-                                        type="file"
-                                        id="file"
-                                        onChange={handleFileChange}
-                                        multiple
-                                    />
-                                    <div className="previewContainer">
-                                        {fileNames.map((file, index) => (
-                                            <img key={file} src={file} alt={`Preview ${index}`} className="preview" />
-                                        ))}
-                                    </div>
-                                </div>
+                    </div>
+
+                    <div>
+                        <label htmlFor="barrio">Barrio:</label>
+                        <input
+                            type="text"
+                            id="barrio"
+                            value={barrio}
+                            onChange={(event) => setBarrio(event.target.value)}
+                        />
+                    </div>
+
+                    <div>
+                        <label htmlFor="ciudad">Ciudad:</label>
+                        <input
+                            type="text"
+                            id="ciudad"
+                            value={ciudad}
+                            initialvalue={problema.ciudad}
+                            onChange={(event) => setCiudad(event.target.value)}
+                        />
+                    </div>
+
+                    <div>
+                        <label htmlFor="file"></label>
+                        <input
+                            type="file"
+                            id="file"
+                            onChange={handleFileChange}
+                            multiple
+                        />
+                        <div className="previewContainer">
+                            {isLoading ? (
+                                <p>Loading images...</p>
                             ) : (
-                                    <div>
-                                        {imagenes.map((image) => (
-                                            <img
-                                                key={image.filename}
-                                                src={`http://localhost:8080${image.url}`}
-                                                alt={image.filename}
-                                                className={`miniatura-imagen ${imagenActual === image.url && "seleccionado"
-                                                    }`}
-                                                onClick={() => handleClick(image.url)}
-                                            />
-                                        ))}
-                                </div>
+                                <Slideshow images={imagenes.map((image) => `http://localhost:8080${image.url}`)} />
                             )}
+
+                            {fileNames.map((file, index) => (
+                                <img key={file} src={file} alt={`Preview ${index}`} className="preview" />
+                            ))}
                         </div>
                     </div>
-                    {editando ? (
-                        <button onClick={handleUpdate}>Actualizar</button>
-                    ) : (
-                        <button onClick={handleEdit}>Editar</button>
-                    )}
-                </span>
+
+
+                    <button type="submit" className="registro">
+                        Crear problema
+                    </button>
+                </form>
             )}
         </div>
     );
-
+};

@@ -35,16 +35,19 @@ export const DetalleProblema = () => {
                     <h2 className="Detalle-Title">{problema.title}</h2>
                     <p className="Detalle-Description">{problema.description}</p>
                     <p className="Detalle-Barrio">
-                        {problema.barrio}, {problema.ciudad}
+                        {problema.barrio}
+                    </p>
+                    <p className="Detalle-Ciudad">
+                        {problema.ciudad}
                     </p>
                     <p className="Detalle-Likes">{problema.likes}</p>
                     <div>
                         <div className="SlideShow">
-                        {isLoading ? (
-                        <p>Loading images...</p>
-                        ) : (
-                            <Slideshow images={imagenes.map((image) => `http://localhost:8080${image.url}`)} />
-                        )}
+                            {isLoading ? (
+                                <p>Loading images...</p>
+                            ) : (
+                                <Slideshow images={imagenes.map((image) => `http://localhost:8080${image.url}`)} />
+                            )}
                         </div>
                         {user.isAuthorized() && (
                             <div>
