@@ -13,11 +13,10 @@ h1 {
 a {
   width: 5rem;
   all: unset;
-  color: white;
   cursor: pointer;
   transition: 0.33s;
 }
 
 a:hover {
-  opacity: 65%;
+  opacity: 55%;
 }
