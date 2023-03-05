@@ -1,49 +1,57 @@
-import { useState, useEffect } from "react";
-import "./Slideshow.css";
+import React, { useState } from 'react';
+import './index.css';
 
-const Slideshow = ({ images }) => {
+function SlideShow({ images }) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  useEffect(() => {
-    setIsLoaded(false);
-  }, [images]);
+  const [direction, setDirection] = useState(null);
 
   const handleNext = () => {
-    setCurrentIndex((currentIndex + 1) % images.length);
+    setDirection('next');
+    const nextIndex = (currentIndex + 1) % images.length;
+    setCurrentIndex(nextIndex);
   };
 
-  const handlePrev = () => {
-    setCurrentIndex((currentIndex + images.length - 1) % images.length);
+  const handlePrevious = () => {
+    setDirection('previous');
+    const previousIndex = (currentIndex - 1 + images.length) % images.length;
+    setCurrentIndex(previousIndex);
   };
 
-  const handleImageLoad = () => {
-    setIsLoaded(true);
-  };
+  //Hover Effect // 
+
+  const [ButtonState, SetButtonState] = useState(false);
+  const [ButtonState2, SetButtonState2] = useState(false);
+  const hoverL = () => {
+    SetButtonState((ButtonState) => !ButtonState);
+    };
+    const hoverR = () => {
+    SetButtonState2((ButtonState2) => !ButtonState2);
+    };
+  let ButtonStateCheck = ButtonState ? "NH" : "";
+  let ButtonStateCheck2 = ButtonState2 ? "PH" : "";
 
   return (
-    <div className="Slideshow">
-      <div className="Slideshow-wrapper">
-        {images.length > 1 && (
-          <div className="Slideshow-controls">
-            <button onClick={handlePrev}>&lt;</button>
-            <button onClick={handleNext}>&gt;</button>
+    <div className="slider-container">
+      <div className={`slider-image-wrapper ${direction}`}>
+        {images.map((image, index) => (
+          <div
+            key={index}
+            className={`slider-image ${index === currentIndex ? 'active' : ''}`}
+          >
+            <img src={image} alt="" />
+            {images.length > 1 && (
+              <div className="slider-controls">
+                <button   onMouseEnter={hoverL} 
+                          onMouseLeave={hoverL} onClick={handlePrevious} className={ButtonStateCheck}></button>
+                <button   onMouseEnter={hoverR} 
+                          onMouseLeave={hoverR} onClick={handleNext} className={ButtonStateCheck2}></button>
+              </div>
+            )}
           </div>
-        )}
-        <div className={`Slideshow-images ${isLoaded ? "loaded" : ""}`}>
-          {images.map((image, index) => (
-            <img
-              key={index}
-              src={image}
-              alt={`Slide ${index}`}
-              className={`Slideshow-image ${index === currentIndex ? "active" : ""}`}
-              onLoad={handleImageLoad}
-            />
-          ))}
-        </div>
+        ))}
       </div>
     </div>
   );
-};
+}
 
-export default Slideshow;
+export default SlideShow;

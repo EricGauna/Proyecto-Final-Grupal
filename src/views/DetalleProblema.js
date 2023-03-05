@@ -26,9 +26,6 @@ export const DetalleProblema = () => {
         };
         loadData();
     }, [id]);
-    
-   
-
 
     return (
         <div className="Detalle">
