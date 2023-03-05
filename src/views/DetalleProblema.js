@@ -33,7 +33,7 @@ export const DetalleProblema = () => {
             {problema && (
                 <div>
                     <h2 className="Detalle-Title">{problema.title}</h2>
-
+                    <p className="Detalle-Description">{problema.description}</p>
                     {user.isAuthorized() && (
                                     <div>
                                     <Link to={`/problemas/${id}/edit`}>
@@ -47,11 +47,7 @@ export const DetalleProblema = () => {
                                 <p>Loading images...</p>
                             ) : (
                                 <div className="SlideShow">
-                                    <p className="Detalle-Description">{problema.description}</p>
-                                    <p className="Detalle-Barrio">{problema.barrio}</p>
-                                    <p className="Detalle-Ciudad">- {problema.ciudad}</p>
-                                    <p className="Detalle-Likes">{problema.likes}</p>
-                                    <Slideshow images={imagenes.map((image) => `http://localhost:8080${image.url}`)} />
+                                    <Slideshow problema={problema} images={imagenes.map((image) => `http://localhost:8080${image.url}`)} />
                                 </div>
                             )}
 

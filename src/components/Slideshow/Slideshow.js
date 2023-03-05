@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './index.css';
 
-function SlideShow({ images }) {
+function SlideShow({ images, problema }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(null);
 
@@ -41,6 +41,10 @@ function SlideShow({ images }) {
             <div className="slider-image-inner">
               <img src={image} alt={image} />
               <div className="gradient-overlay"></div>
+              <div>                                    
+              <p className="Detalle-Barrio">{problema.barrio}</p>
+              <p className="Detalle-Ciudad">- {problema.ciudad}</p>
+              <p className="Detalle-Likes">{problema.likes}</p></div>
             </div>
             {images.length > 1 && (
               <div className="slider-controls">
