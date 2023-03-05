@@ -1,41 +1,52 @@
-.Detalle {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-}
-
 .Slideshow {
     position: relative;
+    overflow: hidden;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    overflow: hidden;
 }
-
 
 .Detalle-Title {
     text-align: center;
-    font-size: 3rem;
+    font-size: 2rem;
 }
 
 .Detalle-Description {
-    text-align: center;
-    margin-top: 1rem;
-    font-size: 1rem;
+    z-index: 99;
+    font-weight: 300;
+    font-size: 1.4rem;
+    position: absolute;
+    top: 85%;
+    left: 51.5%;
+    transform: translate(-50%, -50%);
+    width: 140vh;
 }
 
 .Detalle-Barrio {
-    text-align: center;
+    z-index: 99;
+    font-weight: 600;
     font-style: italic;
+    font-size: 1.75rem;
+    position: absolute;
+    top: 79%;
+    left: 46%;
+    transform: translate(-50%, -50%);
+    width: 120vh;
 }
 
-.Image {
-    width: 30rem;
-    border-radius: 11px;
-    align-items: center;
-    margin: 2rem;
+.Detalle-Ciudad {
+    z-index: 99;
+    font-weight: 600;
+    font-style: italic;
+    font-size: 1.75rem;
+    position: absolute;
+    top: 79%;
+    left: 51.8%;
+    transform: translate(-50%, -50%);
+    width: 120vh;
 }
 
-.Images {
-    display: block;
+.Edit {
 }
+

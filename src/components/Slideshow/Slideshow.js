@@ -23,10 +23,10 @@ function SlideShow({ images }) {
   const [ButtonState2, SetButtonState2] = useState(false);
   const hoverL = () => {
     SetButtonState((ButtonState) => !ButtonState);
-    };
-    const hoverR = () => {
+  };
+  const hoverR = () => {
     SetButtonState2((ButtonState2) => !ButtonState2);
-    };
+  };
   let ButtonStateCheck = ButtonState ? "NH" : "";
   let ButtonStateCheck2 = ButtonState2 ? "PH" : "";
 
@@ -38,7 +38,10 @@ function SlideShow({ images }) {
             key={index}
             className={`slider-image ${index === currentIndex ? 'active' : ''}`}
           >
-            <img src={image} alt="" />
+            <div className="slider-image-inner">
+              <img src={image} alt={image} />
+              <div className="gradient-overlay"></div>
+            </div>
             {images.length > 1 && (
               <div className="slider-controls">
                 <button   onMouseEnter={hoverL} 
