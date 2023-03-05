@@ -36,8 +36,8 @@ export const Registeruser = () => {
     };
 
     return (
-        <div className="form-container">
-        <form onSubmit={handleSubmit} className="formulario">
+        <div className="form-container-register">
+        <form onSubmit={handleSubmit} className="formulario-register">
             <div>
                 <label htmlFor="email">Email</label>
                 <input type="email" id="email" value={email} onChange={handleEmailChange} />

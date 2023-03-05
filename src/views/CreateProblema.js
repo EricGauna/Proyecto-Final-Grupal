@@ -47,8 +47,8 @@ export const CreateProblema = () => {
   };
 
   return (
-    <div className="form-container">
-      <form className="formulario" onSubmit={handleSubmit}>
+    <div className="form-container-create">
+      <form className="formulario-create" onSubmit={handleSubmit}>
         <div>
           <label htmlFor="title">Título:</label>
           <input
@@ -60,7 +60,7 @@ export const CreateProblema = () => {
         </div>
 
         <div>
-          <label htmlFor="description">Descripción:</label>
+          <label htmlFor="description-create">Descripción:</label>
           <textarea
             id="description"
             value={description}
@@ -69,7 +69,7 @@ export const CreateProblema = () => {
         </div>
 
         <div>
-          <label htmlFor="barrio">Barrio:</label>
+          <label htmlFor="barrio-create">Barrio:</label>
           <input
             type="text"
             id="barrio"
@@ -79,7 +79,7 @@ export const CreateProblema = () => {
         </div>
 
         <div>
-          <label htmlFor="ciudad">Ciudad:</label>
+          <label htmlFor="ciudad-create">Ciudad:</label>
           <input
             type="text"
             id="ciudad"
@@ -96,7 +96,7 @@ export const CreateProblema = () => {
             onChange={handleFileChange}
             multiple
           />
-          <div className="previewContainer">
+          <div className="previewContainer-create">
             {fileNames.map((file, index) => (
               <img key={file} src={file} alt={`Preview ${index}`} className="preview" />
             ))}

@@ -1,4 +1,4 @@
-.formulario {
+.formulario-register {
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -6,7 +6,7 @@
   align-items: center;
 }
 
-.formulario div {
+.formulario-register div {
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -14,11 +14,11 @@
   width: 35%;
 }
 
-.formulario label {
+.formulario-register label {
   font-size: 1.2rem;
 }
 
-.formulario input {
+.formulario-register input {
   display: flex;
   align-items: center;
   padding: 0.4rem;
@@ -29,7 +29,7 @@
   font-size: 1.2rem;
 }
 
-.form-container {
+.form-container-register{
   display: flex;
   justify-content: center;
   align-items: center;

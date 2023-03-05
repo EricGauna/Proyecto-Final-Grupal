@@ -1,26 +1,26 @@
-.formulario {
+.formulario-create {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  width: 50%;
+  min-width: 100%;
   align-items: center;
-  padding-top: 2rem;
+  min-height: 10rem;
 }
 
-.formulario div {
+.formulario-create div {
   display: flex;
   align-items: center;
   flex-direction: column;
   gap: 0.5rem;
-  width: 35%;
+  min-width: 65vh;
 }
 
-.formulario label {
+.formulario-create label {
   font-size: 1.2rem;
 }
 
-.formulario input[type="text"],
-.formulario textarea {
+.formulario-create input[type="text"],
+.formulario-create textarea {
   padding: 0.4rem;
   border-radius: 25px;
   width: 76%;
@@ -29,11 +29,11 @@
   font-size: 1.2rem;
 }
 
-.formulario input[type="file"] {
+.formulario-create input[type="file"] {
   display: none;
 }
 
-.formulario label[for="file"]::before {
+.formulario-create label[for="file"]::before {
   content: "Seleccionar archivo";
   display: inline-block;
   padding: 0.4rem;
@@ -44,7 +44,7 @@
   cursor: pointer;
 }
 
-.formulario label[for="file"]::after {
+.formulario-create label[for="file"]::after {
   content: "";
   display: block;
   font-size: 1rem;
@@ -52,20 +52,20 @@
   color: #666;
 }
 
-.formulario input[type="file"]:focus + label[for="file"]::before {
+.formulario-create input[type="file"]:focus + label[for="file"]::before {
   background-color: #4b4bff;
   color: #fff;
 }
 
-.formulario .previewContainer {
+.formulario-create .previewContainer-create {
   display: flex;
-    flex-wrap: nowrap;
     justify-content: center;
     gap: 10px;
     flex-direction: row;
+    width: fit-content;
 }
 
-.formulario .preview {
+.formulario-create .preview {
   width: 300px;
   height: 300px;
   object-fit: cover;
@@ -73,11 +73,14 @@
 
 }
 
-.form-container {
-  display: flex;
+#description {
+  height: 200px;
+  resize: none;
+}
+
+.form-container-create {
   justify-content: center;
   align-items: center;
-  height: 50vh;
   font-size: 1.2rem;
   background-color: #000000;
 }
@@ -100,3 +103,4 @@
 #name {
   margin-bottom: 1rem;
 }
+
