@@ -1,40 +1,38 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getProblemaById, getImages, editProblemasById } from "../services/Problemas";
-import Slideshow from "../components/Slideshow/Slideshow";
 import { UserContext } from "../contexto/UserContext";
-import "./detalle.css";
+import "./editProblemas.css";
 
 export const EditProblema = () => {
     const { problemasid: id } = useParams();
-    const [problema, setProblema] = useState({ title: "", Description: "", ciudad: "", barrio: "" });
+    const [problema, setProblema] = useState(null);
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [barrio, setBarrio] = useState("");
     const [ciudad, setCiudad] = useState("");
     const [files, setFiles] = useState([]);
     const [imagenes, setImagenes] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
     const [fileNames, setFileNames] = useState([]);
     const { loggedUser } = useContext(UserContext);
-
-
-
+    console.log(problema, title, description, barrio, ciudad, files);
+    
     useEffect(() => {
         const loadData = async () => {
             const { data } = await getProblemaById(id);
-            console.log(data);
             setProblema(data);
             const imagesData = await getImages();
             const filteredImages = imagesData.filter((image) =>
                 data.images.find((img) => img.images === image.filename)
             );
             setImagenes(filteredImages);
-            setIsLoading(false);
+            setTitle(data.title);
+            setDescription(data.description);
+            setBarrio(data.barrio);
+            setCiudad(data.ciudad);
         };
         loadData();
     }, [id]);
-
 
     const handleFileChange = (event) => {
         const selectedFiles = event.target.files;
@@ -42,40 +40,60 @@ export const EditProblema = () => {
         setFiles(fileArray);
         setFileNames(fileArray.map((file) =>
             URL.createObjectURL(file)))
+        setImagenes([]);
     };
 
-
-    const handleSubmit = async (event) => {
-        const token = loggedUser()?.token;
-        event.preventDefault();
+    const updateProblema = async () => {
         const formData = new FormData();
-        formData.append("title", problema.title);
-        formData.append("description", problema.description);
-        formData.append("barrio", problema.barrio);
-        formData.append("ciudad", problema.ciudad);
+        formData.append("title", title);
+        formData.append("description", description);
+        formData.append("barrio", barrio);
+        formData.append("ciudad", ciudad);
         for (let i = 0; i < files.length; i++) {
             formData.append("images", files[i]);
         }
-
+        const token = loggedUser()?.token;
         const config = {
             headers: {
                 Authorization: `Bearer ${token}`,
                 "Content-Type": "multipart/form-data",
             },
-        };
+        }; console.log(formData);
         try {
-            const response = await editProblemasById(formData, config, id);
-            console.log(response);
+            await editProblemasById(formData, config, id);
+            console.log(formData, config, id);
         } catch (error) {
             console.error(error);
         }
     };
 
+    const handleDelete = async (e) => {
+        
+        window.location.href = `http://localhost:3000/problemas`
+    }
+
+    const handleUpdate = async (e) => {
+        e.preventDefault()
+        const updatedProblema = {
+            ...problema,
+            title,
+            description,
+            barrio,
+            ciudad,
+        };
+
+        setProblema(updatedProblema);
+        await updateProblema();
+        window.location.href = `http://localhost:3000/problemas/${id}`;
+    };
+
     return (
-        <div className="Detalle">
+
+        <div className="form-container-edit">
+            <button onClick={handleDelete}>Borrar</button>
             {!problema && <span>No hemos encontrado el problema seleccionado</span>}
             {problema && (
-                <form className="formulario" onSubmit={handleSubmit}>
+                <form className="formulario-edit" onSubmit={handleUpdate}>
                     <div>
                         <label htmlFor="title">Título:</label>
                         <input
@@ -111,38 +129,44 @@ export const EditProblema = () => {
                             type="text"
                             id="ciudad"
                             value={ciudad}
-                            initialvalue={problema.ciudad}
                             onChange={(event) => setCiudad(event.target.value)}
                         />
                     </div>
 
                     <div>
-                        <label htmlFor="file"></label>
+                        <label htmlFor="file">Imagenes:</label>
                         <input
                             type="file"
                             id="file"
                             onChange={handleFileChange}
                             multiple
                         />
-                        <div className="previewContainer">
-                            {isLoading ? (
-                                <p>Loading images...</p>
-                            ) : (
-                                <Slideshow images={imagenes.map((image) => `http://localhost:8080${image.url}`)} />
-                            )}
-
-                            {fileNames.map((file, index) => (
-                                <img key={file} src={file} alt={`Preview ${index}`} className="preview" />
+                        <div className="previewContainer-edit">
+                            {imagenes.map((image, index) => (
+                                <img
+                                    key={image.filename}
+                                    src={`http://localhost:8080/images/${image.filename}`}
+                                    alt={`Preview ${index}`}
+                                    className="preview-edit"
+                                />
+                            ))}
+                            {fileNames.map((name, index) => (
+                                <img
+                                    key={name}
+                                    src={name}
+                                    alt={`Preview ${index}`}
+                                    className="preview-edit"
+                                />
                             ))}
                         </div>
                     </div>
 
-
                     <button type="submit" className="registro">
-                        Crear problema
+                        Actualizar
                     </button>
                 </form>
             )}
+            <button>Borrar</button>
         </div>
     );
-};
+}

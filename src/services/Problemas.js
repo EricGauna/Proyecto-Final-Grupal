@@ -59,9 +59,22 @@ export const searchProblemas = async (searchParams) => {
 
 export const editProblemasById = async (formData, config, id) => {
   try {
+    console.log(formData, config, id);
     const { data } = await axios.put(
       `http://localhost:8080/problemas/${id}/edit`,
-      formData, config
+      formData, config,
+      )
+      
+    return data;
+  } catch (e) {
+    return {};
+  }
+}
+
+export const deleteProblemaById = async (id) => {
+  try {
+    const { data } = await axios.get(
+      `http://localhost:8080/problemas/${id}`
     )
     return data;
   } catch (e) {
