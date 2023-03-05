@@ -57,10 +57,11 @@ export const searchProblemas = async (searchParams) => {
   }
 };
 
-export const editProblemasById = async (id) => {
+export const editProblemasById = async (formData, config, id) => {
   try {
-    const { data } = await axios.get(
-      `http://localhost:8080/problemas/${id}`
+    const { data } = await axios.put(
+      `http://localhost:8080/problemas/${id}/edit`,
+      formData, config
     )
     return data;
   } catch (e) {
