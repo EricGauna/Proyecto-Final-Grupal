@@ -1,4 +1,5 @@
 import axios from "axios";
+
 export const RegisterUser = async ({ name, email, password }) => {
     try {
         const { data } = await axios.post(
@@ -29,8 +30,7 @@ export const login = async ({ email, password, }) => {
             {
                 headers: { 'Content-Type': 'application/json' }
             })
-
-        console.log(data);
+console.log(data);
         return data
         
     } catch (error) {

@@ -4,7 +4,7 @@ import { UserContext } from "../../contexto/UserContext";
 import "./index.css"
 
 export const Login = () => {
-  const { loginUser, loggedUser,logOut } = useContext(UserContext);
+  const { loginUser, loggedUser, logOut } = useContext(UserContext);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
 

@@ -13,13 +13,21 @@ export const UserProvider = ({ children }) => {
         const newUser = { name, email, token, role, id }
         setUser(newUser)
         localStorage.setItem("user", JSON.stringify(newUser));
-        console.log(newUser);
     }
     const isAuthorized = () => {
         return user !== undefined && user.role === "admin";
     }
+    const isUser = () => {
+        return user !== undefined && user.role
+    }
+    const isloggedUser = () => {
+        if (user !== undefined) {
+            return user;
+        }
+        return undefined;
+    };
     const loggedUser = () => {
-        if (isAuthorized()) {
+        if (isUser()) {
             return user
         }
         return undefined
@@ -30,7 +38,7 @@ export const UserProvider = ({ children }) => {
         window.location.href = "/";
     };
 
-    return <UserContext.Provider value={{ isAuthorized, loggedUser, loginUser, logOut }}>
+    return <UserContext.Provider value={{ isAuthorized, loggedUser, loginUser, logOut, isloggedUser , isUser }}>
         {children}
     </UserContext.Provider>
 }
