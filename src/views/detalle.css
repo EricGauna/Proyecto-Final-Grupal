@@ -12,42 +12,10 @@
     font-size: 2rem;
 }
 
-.Detalle-Description {
-    z-index: 99;
-    font-weight: 300;
-    font-size: 1.4rem;
-    position: absolute;
-    top: 85%;
-    left: 51.5%;
-    transform: translate(-50%, -50%);
-    width: 140vh;
-}
-
-.Detalle-Barrio {
-    z-index: 99;
-    font-weight: 600;
-    font-style: italic;
-    font-size: 1.75rem;
-    position: absolute;
-    top: 79%;
-    left: 46%;
-    transform: translate(-50%, -50%);
-    width: 120vh;
-}
-
-.Detalle-Ciudad {
-    z-index: 99;
-    font-weight: 600;
-    font-style: italic;
-    font-size: 1.75rem;
-    position: absolute;
-    top: 79%;
-    left: 51.8%;
-    transform: translate(-50%, -50%);
-    width: 120vh;
-}
-
 .Edit {
+    cursor: pointer;
+    background-color: aquamarine;
+    width: 20rem;
 }
 
 .liked {

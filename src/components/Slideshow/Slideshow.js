@@ -1,57 +1,51 @@
 import React, { useState } from 'react';
 import './index.css';
 
-function SlideShow({ images }) {
+function SlideShow({ images, problema }) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [direction, setDirection] = useState(null);
 
   const handleNext = () => {
-    setDirection('next');
     const nextIndex = (currentIndex + 1) % images.length;
     setCurrentIndex(nextIndex);
   };
 
   const handlePrevious = () => {
-    setDirection('previous');
     const previousIndex = (currentIndex - 1 + images.length) % images.length;
     setCurrentIndex(previousIndex);
   };
 
-  //Hover Effect // 
-
-  const [ButtonState, SetButtonState] = useState(false);
-  const [ButtonState2, SetButtonState2] = useState(false);
-  const hoverL = () => {
-    SetButtonState((ButtonState) => !ButtonState);
-  };
-  const hoverR = () => {
-    SetButtonState2((ButtonState2) => !ButtonState2);
-  };
-  let ButtonStateCheck = ButtonState ? "NH" : "";
-  let ButtonStateCheck2 = ButtonState2 ? "PH" : "";
-
   return (
     <div className="slider-container">
-      <div className={`slider-image-wrapper ${direction}`}>
+      <div className={`slider-image-wrapper`}>
         {images.map((image, index) => (
+        <div>
+        {images.length > 1 && (
+        <div className="slider-controls">
+          <button className='Previous' onClick={handlePrevious}></button>
+          <button className='Next' onClick={handleNext}></button>
+          <p className="Detalle-Barrio">{problema.barrio}</p>
+              <p className="Detalle-Ciudad">- {problema.ciudad}</p>
+              <p className="Detalle-Likes">{problema.likes}</p>
+              <p className="Detalle-Barrio">{problema.barrio}</p>
+        </div>
+        )}
           <div
             key={index}
             className={`slider-image ${index === currentIndex ? 'active' : ''}`}
+            style={{
+              backgroundImage: `linear-gradient(180deg, rgba(62,41,146,0) 55%, rgba(0, 0, 0, 0.9) 99%), url(${image})`,
+              backgroundPosition: 'center',
+              backgroundSize: 'cover',
+              transform: `translateX(${(index - currentIndex) * 100}%)`,
+              transition: 'transform 0.5s ease'
+            }}
           >
-            <div className="slider-image-inner">
-              <img src={image} alt={image} />
-              <div className="gradient-overlay"></div>
-            </div>
-            {images.length > 1 && (
-              <div className="slider-controls">
-                <button   onMouseEnter={hoverL} 
-                          onMouseLeave={hoverL} onClick={handlePrevious} className={ButtonStateCheck}></button>
-                <button   onMouseEnter={hoverR} 
-                          onMouseLeave={hoverR} onClick={handleNext} className={ButtonStateCheck2}></button>
-              </div>
-            )}
+          </div>
           </div>
         ))}
+      </div>
+      <div className='Text-Box'>
+      <p className="Detalle-Description">{problema.description}</p>
       </div>
     </div>
   );

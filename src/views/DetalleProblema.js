@@ -83,11 +83,7 @@ export const DetalleProblema = () => {
                                 <p>Loading images...</p>
                             ) : (
                                 <div className="SlideShow">
-                                    <p className="Detalle-Description">{problema.description}</p>
-                                    <p className="Detalle-Barrio">{problema.barrio}</p>
-                                    <p className="Detalle-Ciudad">- {problema.ciudad}</p>
-                                    <p className="Detalle-Likes">{likes}</p>
-                                    <Slideshow images={imagenes.map((image) => `http://localhost:8080${image.url}`)} />
+                                    <Slideshow problema={problema} images={imagenes.map((image) => `http://localhost:8080${image.url}`)} />
                                 </div>
                             )}
 
