@@ -85,10 +85,8 @@ export const toggleLike = async (config, id) => {
   try {
     const response = await fetch(`http://localhost:8080/problemas/${id}/like`, config);
     const  data  = await response.json();
-    console.log(response);
     console.log(data);
     const isLiked = data.data.liked;
-    console.log(isLiked);
     return isLiked;
   } catch (e) {
     return {};

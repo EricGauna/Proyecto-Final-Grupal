@@ -38,3 +38,14 @@ console.log(data);
         throw new Error("Wrong email o password")
     }
 }
+
+export const LikesUser = async (config ) => {
+    try {
+        const response = await fetch(`http://localhost:8080/user/like`, config);
+        const  data  = await response.json();
+        console.log(data);
+        return data;
+    } catch (e) {
+        return {};
+    }
+}

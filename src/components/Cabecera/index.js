@@ -5,7 +5,7 @@ export const Cabecera = () => {
   return (
     <header className="header">
       <h1>
-        <a href="/" className="Inicio">
+        <a href="http://localhost:3000/" className="Inicio">
           MEJORA TU CIUDAD
         </a>
       </h1>

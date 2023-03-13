@@ -175,7 +175,7 @@ return (
                 </button>
             </form>
         )}
-        <button>Borrar</button>
+        
     </div>
 );
 }

@@ -8,7 +8,7 @@ import Slideshow from "../components/Slideshow/Slideshow";
 
 export const DetalleProblema = () => {
     const { problemasid: id } = useParams();
-    const { isloggedUser, loggedUser, isAuthorized } = useContext(UserContext);
+    const { isloggedUser, loggedUser, isAuthorized, getLikes } = useContext(UserContext);
     const [problema, setProblema] = useState({});
     const [imagenes, setImagenes] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -17,7 +17,7 @@ export const DetalleProblema = () => {
 
     useEffect(() => {
         const loadData = async () => {
-            const  {data}  = await getProblemaById(id);
+            const { data } = await getProblemaById(id);
             setProblema(data);
             const imagesData = await getImages();
             const filteredImages = imagesData.filter((image) =>
@@ -25,13 +25,41 @@ export const DetalleProblema = () => {
             );
             setImagenes(filteredImages);
             setIsLoading(false);
-            setLikes(data.likes)
+            setLikes(data.likes);
             if (data.liked !== undefined) {
+                console.log(data.liked);
                 setIsLiked(data.liked);
             }
         };
         loadData();
     }, [id]);
+
+    useEffect(() => {
+        const seeLikes = async () => {
+            const token = isloggedUser()?.token;
+            const config = {
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json",
+                },
+            };
+            try {
+                const Likes = await getLikes(config);
+                console.log(Likes);
+                console.log(problema.id);
+                const filteredLikes = Likes.filter((like) => {
+                    return like.problemasId === problema.id;
+                });
+                if (filteredLikes.length > 0) {
+                    setIsLiked(true);
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        };
+        seeLikes();
+    }, [problema.id])
 
     const handleToggleLike = async (event) => {
         const token = isloggedUser()?.token;

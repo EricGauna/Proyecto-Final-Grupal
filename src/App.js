@@ -18,11 +18,11 @@ export const App = () => {
       element: <Main />,
       errorElement: <ErrorPage />,
     },
-    /* {
+    {
       path: "/search",
       element: <Main />,
       errorElement: <ErrorPage />,
-    }, */
+    }, 
     {
       path: "/registeruser",
       element: <Registeruser />,
