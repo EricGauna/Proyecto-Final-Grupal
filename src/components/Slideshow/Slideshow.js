@@ -32,7 +32,7 @@ function SlideShow({ images, problema }) {
             key={index}
             className={`slider-image ${index === currentIndex ? 'active' : ''}`}
             style={{
-              backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0) 55%, rgba(0,0,0,0.8) 98%), url(${image})`,
+              backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0) 55%, rgba(0,0,0,0.8) 95%), url(${image})`,
               backgroundPosition: 'center',
               backgroundSize: 'cover',
               transform: `translateX(${(index - currentIndex) * 100}%)`,
