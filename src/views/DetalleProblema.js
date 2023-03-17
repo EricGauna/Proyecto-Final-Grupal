@@ -32,7 +32,7 @@ export const DetalleProblema = () => {
             }
         };
         loadData();
-    }, [id]);
+    }, [id, likes]);
 
     useEffect(() => {
         const seeLikes = async () => {
