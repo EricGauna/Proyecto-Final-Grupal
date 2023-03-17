@@ -46,8 +46,6 @@ export const DetalleProblema = () => {
             };
             try {
                 const Likes = await getLikes(config);
-                console.log(Likes);
-                console.log(problema.id);
                 const filteredLikes = Likes.filter((like) => {
                     return like.problemasId === problema.id;
                 });
@@ -72,7 +70,6 @@ export const DetalleProblema = () => {
         };
         try {
             const liked = await toggleLike(config, id);
-            console.log(liked);
             if (liked === false) {
                 setIsLiked(false);
                 setLikes(likes - 1);
@@ -90,21 +87,22 @@ export const DetalleProblema = () => {
             {problema && (
                 <div>
                     <h2 className="Detalle-Title">{problema.title}</h2>
-
+                    <div className="ImageButtons">
+                    {loggedUser() && (
+                        <div className="LikeBox">
+                            <i onClick={handleToggleLike} className={isLiked ? "fa-solid fa-heart" : "fa-regular fa-heart"}>
+                            </i>
+                        </div>
+                    )}
+                    <p className="Detalle-Likes">{problema.likes}</p>
                     {isAuthorized() && (
-                        <div>
+                        <div className="EditBox">
                             <Link to={`/problemas/${id}/edit`}>
-                                <button className="Edit">Editar</button>
+                                <i class="fa-solid fa-pen-to-square"></i>
                             </Link>
                         </div>
                     )}
-                    {loggedUser() && (
-                        <div>
-                            <button onClick={handleToggleLike} className={isLiked ? "Edit liked" : "Edit"}>
-                                {isLiked ? "Liked" : "Like"}
-                            </button>
-                        </div>
-                    )}
+                    </div>
                     <div>
                         <div>
                             {isLoading ? (

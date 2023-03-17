@@ -5,7 +5,7 @@
 }
 
 .slider-image-wrapper:hover {
-transform: scale(1.1) translateY(-55px);
+transform: scale(1.05) translateY(-85px);
 }
 
 .slider-image-wrapper {
@@ -21,11 +21,12 @@ transform: scale(1.1) translateY(-55px);
 }
 
 .slider-image {
+  transform: scale(2hnn);
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 99.4%;
+  height: 100%;
 }
 
 .slider-image div {
@@ -88,7 +89,7 @@ transform: scale(1.1) translateY(-55px);
 
 .Detalle-Barrio {
   font-style: italic;
-  top: 82%;
+  top: 83%;
   font-size: 1.4rem;
 }
 
