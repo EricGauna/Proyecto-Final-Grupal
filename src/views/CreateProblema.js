@@ -50,6 +50,7 @@ export const CreateProblema = () => {
   return (
     <div className="form-container-create">
       <form className="formulario-create" onSubmit={handleSubmit}>
+      <div className="titulo-create">Rellena todos los campos y crear un nuevo problema en tu ciudad</div>
         <div>
           <label htmlFor="title">Título:</label>
           <input

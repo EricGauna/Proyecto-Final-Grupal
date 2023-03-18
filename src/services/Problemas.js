@@ -85,9 +85,19 @@ export const toggleLike = async (config, id) => {
   try {
     const response = await fetch(`http://localhost:8080/problemas/${id}/like`, config);
     const  data  = await response.json();
-    console.log(data);
     const isLiked = data.data.liked;
     return isLiked;
+  } catch (e) {
+    return {};
+  }
+}
+
+export const toggleStatus = async (config, id) => {
+  try {
+    const response = await fetch(`http://localhost:8080/problemas/${id}/status`, config);
+    const {data} = await response.json();
+    console.log(data);
+    return data;
   } catch (e) {
     return {};
   }

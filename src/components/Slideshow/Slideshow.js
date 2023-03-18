@@ -18,33 +18,34 @@ function SlideShow({ images, problema }) {
     <div className="slider-container">
       <div className={`slider-image-wrapper`}>
         {images.map((image, index) => (
-        <div>
-        {images.length > 1 && (
-        <div className="slider-controls">
-          <button className='Previous' onClick={handlePrevious}></button>
-          <button className='Next' onClick={handleNext}></button>
-          <p className="Detalle-Barrio">{problema.barrio}</p>
-              <p className="Detalle-Ciudad">- {problema.ciudad}</p>
-              <p className="Detalle-Barrio">{problema.barrio}</p>
-        </div>
-        )}
-          <div
-            key={index}
-            className={`slider-image ${index === currentIndex ? 'active' : ''}`}
-            style={{
-              backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0) 55%, rgba(0,0,0,0.8) 95%), url(${image})`,
-              backgroundPosition: 'center',
-              backgroundSize: 'cover',
-              transform: `translateX(${(index - currentIndex) * 100}%)`,
-              transition: 'transform 0.5s ease'
-            }}
-          >
-          </div>
+          <div key={index}>
+            {images.length > 1 && (
+              <div className="slider-controls">
+                <button className='Previous' onClick={handlePrevious}></button>
+                <button className='Next' onClick={handleNext}></button>
+                <p className="Detalle-Barrio">{problema.barrio}</p>
+                <p className="Detalle-Ciudad">- {problema.ciudad}</p>
+                <p className="Detalle-Likes">{problema.likes}</p>
+                <p className="Detalle-Barrio">{problema.barrio}</p>
+              </div>
+            )}
+            <div
+              key={`image-${index}`}
+              className={`slider-image ${index === currentIndex ? 'active' : ''}`}
+              style={{
+                backgroundImage: `linear-gradient(180deg, rgba(62,41,146,0) 55%, rgba(0, 0, 0, 0.9) 99%), url(${image})`,
+                backgroundPosition: 'center',
+                backgroundSize: 'cover',
+                transform: `translateX(${(index - currentIndex) * 100}%)`,
+                transition: 'transform 0.5s ease'
+              }}
+            >
+            </div>
           </div>
         ))}
       </div>
       <div className='Text-Box'>
-      <p className="Detalle-Description">{problema.description}</p>
+        <p className="Detalle-Description">{problema.description}</p>
       </div>
     </div>
   );

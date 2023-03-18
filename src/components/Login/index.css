@@ -4,7 +4,7 @@
   position: absolute;
   cursor: pointer;
   z-index: 999;
-  top: 5rem;
+  top: 7rem;
   left: 2.5rem;
   background-color: var(--purplelov);
   opacity: 75%;
@@ -39,7 +39,7 @@
   position: absolute;
   cursor: pointer;
   z-index: 999;
-  top: 5rem;
+  top: 7rem;
   left: 2.5rem;
   background-color: var(--purplelov);
   opacity: 75%;
@@ -122,7 +122,6 @@ input[type="text"],
 input[type="password"] {
   padding-right: 2rem;
   width: 78%;
-  font-size: 1rem;
 }
 
 input[type="text"],

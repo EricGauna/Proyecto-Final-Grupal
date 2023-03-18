@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getProblemaById, getImages, editProblemasById, deleteProblemaById } from "../services/Problemas";
+import { getProblemaById, getImages, editProblemasById, deleteProblemaById, toggleStatus } from "../services/Problemas";
 import { UserContext } from "../contexto/UserContext";
 import "./editProblemas.css";
 
@@ -79,7 +79,24 @@ export const EditProblema = () => {
         } catch (error) {
             console.error(error);
         }
-   }
+    }
+    
+    const handleUpdateStatus = async (e) => {
+        const token = loggedUser()?.token;
+        const config = {
+            method: "PUT",
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        };
+        try {
+            const data = await toggleStatus(config, id);
+            console.log(data.data.estado);
+            return data.data.estado
+        } catch (error) {
+            console.error(error);
+        }
+    }
 
 const handleUpdate = async (e) => {
     e.preventDefault()
@@ -99,10 +116,12 @@ const handleUpdate = async (e) => {
 return (
 
     <div className="form-container-edit">
-        <button onClick={handleDelete}>Borrar</button>
+        <button className="button-delete" onClick={handleDelete}>Borrar problema</button>
+        <button className="button-status" onClick={handleUpdateStatus}>Actualizar estado</button>
         {!problema && <span>No hemos encontrado el problema seleccionado</span>}
         {problema && (
             <form className="formulario-edit" onSubmit={handleUpdate}>
+                <div className="titulo-edit">Actualiza el problema rellenando los campos que necesites</div>
                 <div>
                     <label htmlFor="title">Título:</label>
                     <input

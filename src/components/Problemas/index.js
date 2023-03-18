@@ -22,10 +22,6 @@ export const Problemas = () => {
   };
 
   useEffect(() => {
-    getData();
-  }, []);
-
-  useEffect(() => {
     const getData = async () => {
       const { data } = await searchProblemas(filter);
       setProblemas(data.slice(0, 5));
@@ -83,16 +79,17 @@ export const Problemas = () => {
     }
   };
 
-
-
   const handleSearch = ({ value, option }) => {
     const searchParams = createSearchParams({
       [option]: value,
     }).toString();
     navigate({ pathname: "/search", search: searchParams });
     setFilter(searchParams);
-    // console.log(searchParams);
   };
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   const showDetail = (id) => {
     navigate(`/problemas/${id}`);
@@ -106,7 +103,7 @@ export const Problemas = () => {
             {user.isAuthorized() && (
               <div>
                 <Link to={`/createproblema`}>
-                  <button>Crear problema</button>
+                  <button className="create-problema">Crear problema</button>
                 </Link>
               </div>)}
           </div>
@@ -148,7 +145,7 @@ export const Problemas = () => {
                   </div>
                   <div className="el__content">
                     <div className="el__text">{problema.description}</div>
-                    <div className="el__likes">{problema.likes}</div>
+                    <div className="el__likes">Gente a la que le interesa: {problema.likes}</div>
                     <div className="el__close-btn" onClick={handleCloseClick} />
                   </div>
                 </div>

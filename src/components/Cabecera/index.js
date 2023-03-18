@@ -9,6 +9,7 @@ export const Cabecera = () => {
           MEJORA TU CIUDAD
         </a>
       </h1>
+        <p className="description-cabecera">Aqui podrás encontrar problemas de acccesibilidad dentro de tu ciudad y estar al tanto de todos los problemas en tu barrio. </p>
       <div>
         <Login />
       </div>

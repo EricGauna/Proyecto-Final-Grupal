@@ -6,7 +6,12 @@ export const UserProvider = ({ children }) => {
     const [user, setUser] = useState();
 
     useEffect(() => {
-        setUser(JSON.parse(localStorage.getItem("user") || "{}"));
+        const storedUser = JSON.parse(localStorage.getItem("user") || "{}");
+        if (storedUser && storedUser.token) {
+            setUser(storedUser);
+        } else {
+            setUser(undefined);
+        }
     }, []);
 
     const loginUser = ({ name = "user", email, token, role, id }) => {
@@ -17,10 +22,8 @@ export const UserProvider = ({ children }) => {
 
     const getLikes = async (config) => {
         try {
-            const {data} = await LikesUser(config);
-            console.log(data);
+            const { data } = await LikesUser(config);
             setUser(prevUser => ({ ...prevUser, likes: data }));
-            console.log(user);
             return data
         } catch (error) {
             console.error(error);

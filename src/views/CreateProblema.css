@@ -91,7 +91,11 @@
   justify-content: center;
   border-radius: 25px;
   padding: 0.5rem;
-  background-color: #4b4bff;
+  background: linear-gradient(
+    180deg,
+    rgba(62, 41, 146, 0.85) 0%,
+    rgba(62, 41, 146, 0) 100%
+  );
   color: #fff;
   cursor: pointer;
 }
@@ -104,3 +108,7 @@
   margin-bottom: 1rem;
 }
 
+.titulo-create{
+  margin: 1rem;
+    user-select: none;
+}

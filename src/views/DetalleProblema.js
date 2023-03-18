@@ -3,9 +3,9 @@ import { useParams } from "react-router-dom";
 import { getProblemaById, getImages, toggleLike } from "../services/Problemas";
 import { UserContext } from "../contexto/UserContext";
 import { Link } from "react-router-dom";
-import "./detalle.css";
 import Slideshow from "../components/Slideshow/Slideshow";
-
+import "./detalle.css";
+    
 export const DetalleProblema = () => {
     const { problemasid: id } = useParams();
     const { isloggedUser, loggedUser, isAuthorized, getLikes } = useContext(UserContext);
@@ -27,37 +27,38 @@ export const DetalleProblema = () => {
             setIsLoading(false);
             setLikes(data.likes);
             if (data.liked !== undefined) {
-                console.log(data.liked);
                 setIsLiked(data.liked);
             }
         };
         loadData();
-    }, [id, likes]);
+    }, [id]);
 
     useEffect(() => {
         const seeLikes = async () => {
             const token = isloggedUser()?.token;
-            const config = {
-                method: "GET",
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    "Content-Type": "application/json",
-                },
-            };
-            try {
-                const Likes = await getLikes(config);
-                const filteredLikes = Likes.filter((like) => {
-                    return like.problemasId === problema.id;
-                });
-                if (filteredLikes.length > 0) {
-                    setIsLiked(true);
+            if (token !== undefined) {
+                const config = {
+                    method: "GET",
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        "Content-Type": "application/json",
+                    },
+                };
+                try {
+                    const Likes = await getLikes(config);
+                    const filteredLikes = Likes.filter((like) => {
+                        return like.problemasId === problema.id;
+                    });
+                    if (filteredLikes.length > 0) {
+                        setIsLiked(true);
+                    }
+                } catch (error) {
+                    console.error(error);
                 }
-            } catch (error) {
-                console.error(error);
             }
         };
         seeLikes();
-    }, [problema.id])
+    }, [problema.id ])
 
     const handleToggleLike = async (event) => {
         const token = isloggedUser()?.token;
@@ -85,23 +86,24 @@ export const DetalleProblema = () => {
         <div className="Detalle">
             {!problema && <span>No hemos encontrado el problema seleccionado</span>}
             {problema && (
-                <div>
+                <>
                     <h2 className="Detalle-Title">{problema.title}</h2>
                     <div className="ImageButtons">
-                    {loggedUser() && (
-                        <div className="LikeBox">
-                            <i onClick={handleToggleLike} className={isLiked ? "fa-solid fa-heart" : "fa-regular fa-heart"}>
-                            </i>
-                        </div>
-                    )}
-                    <p className="Detalle-Likes">{problema.likes}</p>
-                    {isAuthorized() && (
-                        <div className="EditBox">
-                            <Link to={`/problemas/${id}/edit`}>
-                                <i class="fa-solid fa-pen-to-square"></i>
-                            </Link>
-                        </div>
-                    )}
+                        {loggedUser() && (
+                            <div>
+                                <div className="LikeBox">
+                                    <i onClick={handleToggleLike} className={isLiked ? "fa-solid fa-heart" : "fa-regular fa-heart"}></i>
+                                </div>
+                            </div>
+                        )}
+                        <p className="Detalle-Likes">{`Likes: ${likes}`}</p>
+                        {isAuthorized() && (
+                            <div className="EditBox">
+                                <Link to={`/problemas/${id}/edit`}>
+                                    <div className="fa-solid fa-pen-to-square btn btn-secondary"></div>
+                                </Link>
+                            </div>
+                        )}
                     </div>
                     <div>
                         <div>
@@ -112,10 +114,9 @@ export const DetalleProblema = () => {
                                     <Slideshow problema={problema} images={imagenes.map((image) => `http://localhost:8080${image.url}`)} />
                                 </div>
                             )}
-
                         </div>
                     </div>
-                </div>
+                </>
             )}
         </div>
     );

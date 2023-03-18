@@ -30,7 +30,6 @@ export const login = async ({ email, password, }) => {
             {
                 headers: { 'Content-Type': 'application/json' }
             })
-console.log(data);
         return data
         
     } catch (error) {
@@ -39,11 +38,10 @@ console.log(data);
     }
 }
 
-export const LikesUser = async (config ) => {
+export const LikesUser = async ( config ) => {
     try {
         const response = await fetch(`http://localhost:8080/user/like`, config);
         const  data  = await response.json();
-        console.log(data);
         return data;
     } catch (e) {
         return {};
