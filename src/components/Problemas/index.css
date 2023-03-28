@@ -10,7 +10,7 @@ body {
     sans-serif;
 }
 .cont {
-  margin-top: -0.5rem;
+  margin-top: 2rem;
   position: relative;
   overflow: hidden;
   height: 75vh;
@@ -444,7 +444,7 @@ input {
   position: absolute;
   cursor: pointer;
   z-index: 999;
-  top: 13.5rem;
+  top: 5rem;
   right: 4rem;
   background-color: var(--purplelov);
   opacity: 75%;
