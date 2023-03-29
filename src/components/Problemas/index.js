@@ -146,6 +146,7 @@ export const Problemas = () => {
                   <div className="el__content">
                     <div className="el__text">{problema.description}</div>
                     <div className="el__likes">Gente a la que le interesa: {problema.likes}</div>
+                    <div className="el__estado">{problema.estado=== 1 ? "Pendiente ❌" : "Resuelto ✅"}</div>
                     <div className="el__close-btn" onClick={handleCloseClick} />
                   </div>
                 </div>

@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { RegisterUser } from '../services/user';
 import "./register.css"
+import swal from 'sweetalert';
+
 
 export const Registeruser = () => {
     
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
 
     const handleNameChange = (event) => {
         setName(event.target.value);
@@ -24,11 +27,17 @@ export const Registeruser = () => {
         e.preventDefault();
 
         try {
-            const data = await RegisterUser({ name, email, password });
+            const {data} = await RegisterUser({ name, email, password });
             console.log(data);
+            swal("Good job!", "Usuario registrado", "success");
         } catch (error) {
             if (error.response && error.response.status === 400) {
-                alert("Wrong email or password");
+                swal({
+                    title: "Algo ha ido mal!",
+                    text: "Vuelve a intentarlo!",
+                    icon: "warning",
+                    button: "Ok!",
+                  });
             } else {
                 console.error(error);
             }

@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import { createProblemas } from "../services/Problemas";
 import "./CreateProblema.css";
 import { UserContext } from "../contexto/UserContext";
+import swal from "sweetalert";
 
 export const CreateProblema = () => {
   const [title, setTitle] = useState("");
@@ -16,8 +17,7 @@ export const CreateProblema = () => {
     const selectedFiles = event.target.files;
     const fileArray = Array.from(selectedFiles);
     setFiles(fileArray);
-    setFileNames(fileArray.map((file) =>
-      URL.createObjectURL(file)))
+    setFileNames(fileArray.map((file) => URL.createObjectURL(file)));
   };
 
   const handleSubmit = async (event) => {
@@ -40,9 +40,20 @@ export const CreateProblema = () => {
     };
     try {
       const response = await createProblemas(formData, config);
-      console.log(response);
-      window.location.href = `http://localhost:3000/`
+      const id = response.data.id;
+      swal("OK!", "Problema creado", "success").then((e) => {
+        swal("Te llevamos directamente al problema ;)");
+        setTimeout(function () {
+          window.location.href = `http://localhost:3000/problemas/${id}`;
+        }, 2000);
+      });
     } catch (error) {
+      swal({
+        title: "Algo ha ido mal!",
+        text: "Vuelve a intentarlo!",
+        icon: "warning",
+        button: "Ok!",
+      });
       console.error(error);
     }
   };
@@ -50,7 +61,9 @@ export const CreateProblema = () => {
   return (
     <div className="form-container-create">
       <form className="formulario-create" onSubmit={handleSubmit}>
-      <div className="titulo-create">Rellena todos los campos y crear un nuevo problema en tu ciudad</div>
+        <div className="titulo-create">
+          Rellena todos los campos e identifica un nuevo problema en tu ciudad
+        </div>
         <div>
           <label htmlFor="title">Título:</label>
           <input
@@ -92,15 +105,15 @@ export const CreateProblema = () => {
 
         <div>
           <label htmlFor="file"></label>
-          <input
-            type="file"
-            id="file"
-            onChange={handleFileChange}
-            multiple
-          />
+          <input type="file" id="file" onChange={handleFileChange} multiple />
           <div className="previewContainer-create">
             {fileNames.map((file, index) => (
-              <img key={file} src={file} alt={`Preview ${index}`} className="preview" />
+              <img
+                key={file}
+                src={file}
+                alt={`Preview ${index}`}
+                className="preview"
+              />
             ))}
           </div>
         </div>

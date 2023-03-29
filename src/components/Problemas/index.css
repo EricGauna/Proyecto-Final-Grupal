@@ -141,7 +141,7 @@ body {
 }
 .el__text {
   text-transform: uppercase;
-  font-size: 3.4rem;
+  font-size: 2.5rem;
   color: #fff;
   text-shadow: black 0.1em 0.1em 0.2em;
   max-width: 1000px;
@@ -156,6 +156,41 @@ body {
   font-size: 1.2rem;
   user-select: none;
 }
+.el__estado{
+  text-shadow: black 0.1em 0.1em 0.2em;
+  font-size: 1.2rem;
+  user-select: none;
+  z-index: -1;
+  position: absolute;
+  left: 50px;
+  bottom: 20px;
+  width: 150px;
+  height: 45px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0s 0.45s;
+}
+.el.s--active .el__estado {
+  z-index: 5;
+  opacity: 1;
+  pointer-events: auto;
+  transition: all 0s 1.4s;
+}
+.el__estado:before,
+.el__estado:after {
+  content: "";
+  position: absolute;
+  margin-top: -4px;
+  background: #fff;
+  text-shadow: black 0.1em 0.1em 0.2em;
+  opacity: 0;
+  transition: opacity 0s;
+}
+.el.s--active .el__estado:before,
+.el.s--active .el__estado:after {
+  opacity: 1;
+}
+
 .el__close-btn {
   z-index: -1;
   position: absolute;

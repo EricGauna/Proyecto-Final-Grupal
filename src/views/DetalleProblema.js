@@ -97,6 +97,7 @@ export const DetalleProblema = () => {
                             </div>
                         )}
                         <p className="Detalle-Likes">{`Likes: ${likes}`}</p>
+                        <p className="Detalle-Estado">{problema.estado=== 1 ? "Pendiente ❌" : "Resuelto ✅"}</p>
                         {isAuthorized() && (
                             <div className="EditBox">
                                 <Link to={`/problemas/${id}/edit`}>
