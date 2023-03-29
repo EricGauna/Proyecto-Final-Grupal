@@ -21,7 +21,7 @@ export const Buscador = ({ defaultValue, onSearch, options, option1, option2, op
   };
 
   return (
-    <form onSubmit={handleSearch}>
+    <form onSubmit={handleSearch} autocomplete="off">
       <div className="SearchBar">
         <input
           name="value"
