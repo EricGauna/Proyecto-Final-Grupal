@@ -82,13 +82,26 @@ export const EditProblema = () => {
       },
     };
     try {
-      swal("Are you sure you want to do this?", {
-        buttons: ["Oh noez!", true],
+      swal({
+        title: "Estas seguro?",
+        text: "Si lo borras, borrarás el problema de la base de datos para siempre!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          deleteProblemaById(config, id)
+          swal("Poof! El problema se ha borrado!", {
+            icon: "success",
+          });
+          setTimeout(function () {
+            window.location.href = `http://localhost:3000`;
+          }, 2000);
+        } else {
+          swal("El problema esta a salvo!");
+        }
       });
-      await deleteProblemaById(config, id);
-      setTimeout(function () {
-        window.location.href = `http://localhost:3000/`;
-      }, 2000);
     } catch (error) {
       console.error(error);
     }
@@ -106,9 +119,9 @@ export const EditProblema = () => {
       const data = await toggleStatus(config, id);
       console.log(data.data.estado);
       const estado = data.data.estado;
-      if (estado === 1) {
+      if (estado === 0) {
         setEstado(1);
-      } else if (estado === 0) {
+      } else if (estado) {
         setEstado(0);
       }
       swal({

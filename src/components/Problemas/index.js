@@ -120,8 +120,6 @@ export const Problemas = () => {
           />
         </div>
       </header>
-
-
       <div className="cont s--inactive">
         <div className="cont__inner">
           {problemas.map((problema, index) => (
@@ -141,7 +139,6 @@ export const Problemas = () => {
                   <div className="el__bg"></div>
                   <div className="el__preview-cont">
                     <h2 className="el__heading">{problema.title}</h2>
-
                   </div>
                   <div className="el__content">
                     <div className="el__text">{problema.description}</div>

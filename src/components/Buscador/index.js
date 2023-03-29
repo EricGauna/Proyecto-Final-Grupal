@@ -30,7 +30,7 @@ export const Buscador = ({ defaultValue, onSearch, options, option1, option2, op
           id="SearchText"
           placeholder="Buscar problema"
           value={searchValues.value}
-          autocomplete="off"
+          autoComplete="off"
           onChange={handleInputChange}
         />
         <select
