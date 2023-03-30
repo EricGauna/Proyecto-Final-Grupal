@@ -6,7 +6,7 @@ export const Cabecera = () => {
     <header className="header">
       <h1>
         <a href="http://localhost:3000/" className="Inicio">
-          MEJORA TU CIUDAD
+          CIUDAD ACCESIBLE
         </a>
       </h1>
         <p className="description-cabecera">Aqui podrás encontrar problemas de acccesibilidad dentro de tu ciudad y estar al tanto de todos los problemas en tu barrio. </p>

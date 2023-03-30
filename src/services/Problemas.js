@@ -1,4 +1,5 @@
 import axios from "axios";
+import swal from "sweetalert";
 
 export const getProblemas = async () => {
   try {
@@ -17,7 +18,7 @@ export const createProblemas = async (formData, config) => {
       "http://localhost:8080/createproblema",
       formData, config
 
-    ); console.log(data);
+    ); 
     return data;
   } catch (e) {
     return {};
@@ -31,7 +32,12 @@ export const getProblemaById = async (id) => {
     )
     return data;
   } catch (e) {
-    return {};
+    swal({
+      title: "Algo ha ido mal!",
+      text: "Vuelve a intentarlo!",
+      icon: "warning",
+      button: "Ok!",
+    });
   }
 }
 
@@ -42,7 +48,12 @@ export const getImages = async () => {
     )
     return (data)
   } catch (e) {
-    return {}
+    swal({
+      title: "Algo ha ido mal!",
+      text: "Vuelve a intentarlo!",
+      icon: "warning",
+      button: "Ok!",
+    });
   }
 }
 
@@ -53,7 +64,12 @@ export const searchProblemas = async (searchParams) => {
     );
     return data;
   } catch (e) {
-    return {};
+    swal({
+      title: "Algo ha ido mal!",
+      text: "Vuelve a intentarlo!",
+      icon: "warning",
+      button: "Ok!",
+    });
   }
 };
 
@@ -66,7 +82,12 @@ export const editProblemasById = async (formData, config, id) => {
 
     return data;
   } catch (e) {
-    return {};
+    swal({
+      title: "Algo ha ido mal!",
+      text: "Vuelve a intentarlo!",
+      icon: "warning",
+      button: "Ok!",
+    });
   }
 }
 
@@ -77,7 +98,12 @@ export const deleteProblemaById = async (config, id) => {
     )
     return data;
   } catch (e) {
-    return {};
+    swal({
+      title: "Algo ha ido mal!",
+      text: "Vuelve a intentarlo!",
+      icon: "warning",
+      button: "Ok!",
+    });
   }
 }
 
@@ -88,7 +114,12 @@ export const toggleLike = async (config, id) => {
     const isLiked = data.data.liked;
     return isLiked;
   } catch (e) {
-    return {};
+    swal({
+      title: "Algo ha ido mal!",
+      text: "Vuelve a intentarlo!",
+      icon: "warning",
+      button: "Ok!",
+    });
   }
 }
 
@@ -96,9 +127,13 @@ export const toggleStatus = async (config, id) => {
   try {
     const response = await fetch(`http://localhost:8080/problemas/${id}/status`, config);
     const {data} = await response.json();
-    console.log(data);
     return data;
   } catch (e) {
-    return {};
+    swal({
+      title: "Algo ha ido mal!",
+      text: "Vuelve a intentarlo!",
+      icon: "warning",
+      button: "Ok!",
+    });
   }
 }

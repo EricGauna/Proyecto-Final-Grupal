@@ -56,6 +56,9 @@ export const App = () => {
       <div>
         <RouterProvider router={router} />
       </div>
+      <div>
+        <p className="footer">©️ Ciudad Accesible creado por Eric y Arturo</p>
+      </div>
     </div>
 
 

@@ -39,10 +39,10 @@ transform: translateY(-35px) scale(1.1);
 .slider-controls button {
   z-index: 999;
   padding: 0;
-  width: 25px;
-  height: 25px;
+  width: 35px;
+  height: 35px;
   border: none;
-  opacity: 22%;
+  opacity: 10%;
   cursor: pointer;
   transition: 0.22s;
   border-radius: 50%;
@@ -50,18 +50,23 @@ transform: translateY(-35px) scale(1.1);
 
 .Previous {
   position: absolute;
+  background-image: url('/src/Images/Arrowprev.png');
+  background-size: cover;
   top: 50%;
   left: 2%;
 }
 
 .Next {
   position: absolute;
+  background-image: url('/src/Images/Arrow.png');
+  background-size: cover;
   top: 50%;
   right: 2%;
 }
 
 .slider-controls button:hover {
   transform: scale(1.33);
+  opacity: 100%;
 }
 
 .slider-controls button:active {

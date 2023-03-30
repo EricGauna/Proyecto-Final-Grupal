@@ -1,6 +1,8 @@
 import { useContext, useState, useEffect } from "react";
 import { login } from "../../services/user";
 import { UserContext } from "../../contexto/UserContext";
+import swal from 'sweetalert';
+
 import "./index.css"
 
 export const Login = () => {
@@ -18,8 +20,19 @@ export const Login = () => {
       loginUser(data);
       console.log(data);
       setIsLoggedIn(true);
+        swal({
+                title: `Bienvenid@ ${data.name}!`,
+                text: "Ya puede continuar!",
+                icon: "success",
+                button: "Ok!",
+              }); 
     } catch (e) {
-      alert(e)
+      swal({
+        title: `Email o pass equivocado!`,
+        text: "Vuelve a intentar!",
+        icon: "warning",
+        button: "Ok!",
+      });
       event.target.reset()
     }
   };

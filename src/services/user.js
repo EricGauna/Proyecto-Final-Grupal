@@ -1,4 +1,6 @@
 import axios from "axios";
+import swal from 'sweetalert';
+
 
 export const RegisterUser = async ({ name, email, password }) => {
     try {
@@ -17,7 +19,12 @@ export const RegisterUser = async ({ name, email, password }) => {
         return data;
     } catch (error) {
         console.error(error);
-        throw new Error("");
+        swal({
+                    title: "Algo ha ido mal!",
+                    text: "Vuelve a intentarlo!",
+                    icon: "warning",
+                    button: "Ok!",
+                  });
     }
 };
 

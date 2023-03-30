@@ -8,7 +8,7 @@ html {
   background: url(image.png);
   background-repeat: no-repeat;
   background-position: top center;
-  background-size: 200vh;
+  background-size: 100vw;
   background-color: #000000;
 }
 
@@ -25,5 +25,11 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.footer{
+  margin: 2rem 0rem 2rem ;
+  display: flex;
+  justify-content: center;
 }
 
