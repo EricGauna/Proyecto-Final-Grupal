@@ -6,9 +6,7 @@
   width: 100%;
   height: 100%;
 }
-.Detalle {
-  padding-top: 2rem;
-}
+
 .Detalle-Title {
   text-align: center;
   font-size: 2rem;
@@ -69,6 +67,7 @@
 .fa-solid.fa-heart {
   color: red;
 }
+
 .Detalle-Description {
     border-width: 5px;
     border-style: solid;
