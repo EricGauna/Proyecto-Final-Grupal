@@ -39,10 +39,11 @@ transform: translateY(-35px) scale(1.1);
 .slider-controls button {
   z-index: 999;
   padding: 0;
-  width: 35px;
-  height: 35px;
+  width: 33px;
+  height: 33px;
   border: none;
-  opacity: 10%;
+  opacity: 45%;
+  background-color: var(--purplelov);
   cursor: pointer;
   transition: 0.22s;
   border-radius: 50%;
