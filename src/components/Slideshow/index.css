@@ -42,8 +42,8 @@ transform: translateY(-35px) scale(1.1);
   width: 33px;
   height: 33px;
   border: none;
-  opacity: 45%;
-  background-color: var(--purplelov);
+  opacity: 65%;
+  background-color: black;
   cursor: pointer;
   transition: 0.22s;
   border-radius: 50%;
@@ -51,7 +51,7 @@ transform: translateY(-35px) scale(1.1);
 
 .Previous {
   position: absolute;
-  background-image: url('/src/Images/Arrowprev.png');
+  background-image: url('/src/Images/Arrowprev.svg');
   background-size: cover;
   top: 50%;
   left: 2%;
@@ -59,7 +59,7 @@ transform: translateY(-35px) scale(1.1);
 
 .Next {
   position: absolute;
-  background-image: url('/src/Images/Arrow.png');
+  background-image: url('/src/Images/Arrow.svg');
   background-size: cover;
   top: 50%;
   right: 2%;
