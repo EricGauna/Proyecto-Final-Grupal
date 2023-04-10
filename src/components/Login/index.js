@@ -102,7 +102,7 @@ export const Login = () => {
               </div>
           ) : (
             <div>
-              <h2 className="WelcomeText">Bienvenid@ </h2>
+              <h2 className="WelcomeText">Log-In</h2>
             <form onSubmit={loginNow} className={BoxStateCheck2} onClick={(e) => {e.stopPropagation()}}>
               <input
                 name="email"

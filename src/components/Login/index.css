@@ -4,30 +4,33 @@
   position: absolute;
   cursor: pointer;
   z-index: 999;
-  top: 7rem;
-  left: 2.5rem;
+  top: -2rem;
+  left: 0rem;
+  border-radius: 0px 0px 22px 22px;
   background-color: var(--purplelov);
-  opacity: 75%;
-  border-radius: 22px 0px 0px 22px;
+  opacity: 85%;
   width: 13rem;
   height: 3rem;
   padding: 1rem;
   margin: 2rem;
-  transition: ease-out 0.33s;
+  transition: ease-out 0.22s;
+}
+
+.LogInBoxClosed:hover, .LogInBoxLoggedInClosed:hover {
+  height: 3.7rem;
 }
 
 .LogInBoxOpen {
   z-index: 999;
   position: absolute;
   cursor: pointer;
-  top: 1rem;
-  left: 2.5rem;
+  top: -2rem;
+  left: 0rem;
   background: linear-gradient(
     180deg,
     rgba(62, 41, 146, 0.85) 0%,
     rgba(62, 41, 146, 0) 100%
   );
-  border-radius: 22px 0px 0px 22px;
   width: 13rem;
   height: 13rem;
   padding: 1rem;
@@ -39,30 +42,29 @@
   position: absolute;
   cursor: pointer;
   z-index: 999;
-  top: 7rem;
-  left: 2.5rem;
+  top: -2rem;
+  left: 0rem;
+  border-radius: 0px 0px 22px 22px;
   background-color: var(--purplelov);
-  opacity: 75%;
-  border-radius: 22px 0px 0px 22px;
+  opacity: 85%;
   width: 13rem;
   height: 3rem;
   padding: 1rem;
   margin: 2rem;
-  transition: ease-out 0.33s;
+  transition: ease-out 0.22s;
 }
 
 .LogInBoxLoggedIn {
   z-index: 999;
   position: absolute;
   cursor: pointer;
-  top: 1rem;
-  left: 2.5rem;
+  top: -2rem;
+  left: 0rem;
   background: linear-gradient(
     180deg,
     rgba(62, 41, 146, 0.85) 0%,
     rgba(62, 41, 146, 0) 100%
   );
-  border-radius: 22px 0px 0px 22px;
   width: 13rem;
   height: 13rem;
   padding: 1rem;

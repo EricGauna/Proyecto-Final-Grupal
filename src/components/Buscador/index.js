@@ -21,7 +21,7 @@ export const Buscador = ({ defaultValue, onSearch, options, option1, option2, op
   };
 
   return (
-    <form onSubmit={handleSearch}>
+    <form className="SearchBlock" onSubmit={handleSearch} autoComplete="off">
       <div className="SearchBar">
         <input
           name="value"
@@ -30,7 +30,6 @@ export const Buscador = ({ defaultValue, onSearch, options, option1, option2, op
           id="SearchText"
           placeholder="Buscar problema"
           value={searchValues.value}
-          autoComplete="off"
           onChange={handleInputChange}
         />
         <select

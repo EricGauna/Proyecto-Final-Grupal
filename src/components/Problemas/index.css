@@ -10,7 +10,7 @@ body {
     sans-serif;
 }
 .cont {
-  margin-top: 2rem;
+  margin-top: -1.5rem;
   position: relative;
   overflow: hidden;
   height: 75vh;
@@ -468,9 +468,8 @@ input {
 }
 
 .create-problema {
-  background-color: #32216F;
-  opacity: 90%;
-  border-radius: 22px;
+  opacity: 85%;
+  border-radius: 0px 0px 22px 22px;
   cursor: pointer;
   width: 8rem;
   height: 3rem;
@@ -480,9 +479,12 @@ input {
   position: absolute;
   cursor: pointer;
   z-index: 999;
-  top: 5rem;
+  top: 0rem;
   right: 6.5rem;
   background-color: var(--purplelov);
-  opacity: 75%;
-  transition: ease-out 0.33s;
+  transition: 0.22s;
+}
+
+.create-problema:hover {
+  height: 3.7rem;
 }
